@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">  
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:500|Work+Sans" rel="stylesheet">
+    <!-- Own -->
+    <link rel="stylesheet" href="/styles_user-profile.css"> 
+    <!-- Hotjar Tracking Code for https://spotdrop.herokuapp.com -->
+    <script>
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:839863,hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
+    <title>User profile</title>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-md bg-green">
+    <a class="navbar-brand" href="#">
+        <div style="width: 40px">
+            <div class="nav-profile-img" style="background-image: url('<%= user.info.profile_pic %>');" ></div>
+        </div> 
+    </a>
+    <div class="">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item ml-3">
+                <a href="/index" class="nav-link" > <img src="/icons/chevron-left.svg" width="10px" class="mt-1 ml-1" alt=""> Back to map </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="main1">
+        <!-- USER INFO -->
+        <div class="w-100">
+
+                <form action="/myprofile/?_method=PUT" class="w-100" method="POST">
+
+                    <div class="d-flex flex-row align-items-flex-start">
+                        <div style="width: 150px; flex-shrink: 0">
+                            <div class="profile-img w-100" id="self-profile-pic" style="background-image: url('<%= user.info.profile_pic %>');" ></div>
+                        </div>
+
+                        <div class="d-flex flex-column align-items-flex-start ml-5 ">
+                            <div>
+                                <input type="text" name="username" class="h3" id="input-username" readonly value="<%= user.username %>">
+                                <button class='btn btn-edit' type="button" data-input="input-username"><i class="fas fa-edit fa-lg"></i></button>
+                            </div>
+                        
+                            <div>
+                                <input type="text" name="city" class="h4" type="button" id="input-city" readonly value="<%= user.info.city %>">
+                                <button class='btn btn-edit' data-input="input-city"><i class="fas fa-edit fa-lg"></i></button>
+                            </div>
+                            <% if(user.users_followers){ %>
+                                <span><%= user.users_followers.length %> followers</span>
+                            <% } %>
+                            
+                            <div>
+                                <span>member since: </span>
+                                <span class="txt-date" data-date="<%= user.info.creation_date %>"></span>
+                            </div>
+                        </div>    
+                    </div>           
+
+                    <button class='btn btn-edit float-right mt-5' type="button" data-input="input-about"><i class="fas fa-edit fa-lg"></i></button>
+
+                    <h5 class="mt-5">About me</h5>
+                    <textarea name="about" class="" id="input-about" readonly><%= user.info.about %></textarea>
+
+                    <!-- Hidden input - new profile pic -->
+                    <input type="hidden" name="profile_pic" id="input-profile-pic" value="<%= user.info.profile_pic %>" >  
+
+                    <button class="btn btn-primary mt-2" type="submit" id="btn-submit" >Save changes</button>
+
+                </form>
+
+                <!-- Pills here -->
+                <ul class="nav nav-pills mb-3 mt-5" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                        <button class="btn btn-primary" data-toggle="pill" href="#pills-users-flwg" role="tab" aria-controls="pills-users-flwg" aria-selected="false">Users following - <%= user.users_following.length %> </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-primary ml-1" data-toggle="pill" href="#pills-drops-flwg" role="tab" aria-controls="pills-drops-flwg" aria-selected="false">Drops following - <%= user.drops_following.length %></button>
+                    </li>
+                </ul>
+                
+                <div class="tab-content p-2" id="pills-tabContent">
+                    <!-- Users following -->
+                    <% if(user.users_following){ %>
+                    <div class="tab-pane" id="pills-users-flwg" role="tabpanel">
+                        <ul class="list-group list-group-flush">
+                                <% for(var i = 0; i < user.users_following.length; i++){ %>
+                                <% var c_user = user.users_following[i]  %>
+                                <li class="list-group-item"> <button class="btn btn-remove mr-2" data-type="user" data-id="<%=c_user._id %>" ><i class="fas fa-times"></i></button><%= c_user.username %></li>
+                            <% }} %>                           
+                        </ul>
+                    </div>
+                    <!-- Drops following -->
+                    <% if(user.drops_following){ %>
+                    <div class="tab-pane" id="pills-drops-flwg" role="tabpanel">
+                        <ul class="list-group list-group-flush">
+                                <% for(var i = 0; i < user.drops_following.length; i++){ %>
+                                <% var c_drop = user.drops_following[i]  %>
+                                <li class="list-group-item"> <button class="btn btn-remove mr-2" data-type="drop" data-id="<%=c_drop._id %>" ><i class="fas fa-times"></i></button><%= c_drop.title %></li>
+                            <% }} %>   
+                        </ul>
+                    </div>
+                </div>
+
+        </div>
+
+        <hr class="hr-halfpage mt-5 mb-3">
+
+        <!-- ULTIMA ATIVIDADE -->
+        <div class="w-100">
+            <div class="panel-dark p-4" id="latest-activity">
+                <div class="clearfix mb-5">
+                    <h2 class="float-left">Latest Activity</h2>
+                    <a href="/index/?user=<%=user._id%>" class="btn btn-warning float-right">See drops on map</a>
+                </div>
+               
+                
+               <!-- LISTA -->
+               <% if(latestActivity){ %>
+                <% for(var i = latestActivity.length -1; i >= 0; i--){ %>
+                    <% var drop = latestActivity[i] %>
+                    <div class="latest-activity-item" >
+                        <div class="row h-100">
+                            <div class="col-6">
+                                <div class="d-flex flex-column h-100">
+                                    <div class="latest-activity-header">
+                                        <span class="h4"><%= user.username %></span> <span class="txt-ago" data-date="<%= drop.creation_date%>"></span>
+                                        <% if(drop.hashtag){ %>
+                                        <h4 style="color: red">#<%= drop.hashtag.hashtag %></h3>
+                                        <% } %>
+                                    </div>
+                                    <p class="latest-activity-comment p-2"><%= drop.creation_post.comment %></p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <a href="/drop/<%=drop._id%>"><div class="latest-activity-img" style="background-image: url('<%= drop.creation_post.images[0] %>')"></div></a>
+                            </div>
+                        </div>
+                        <hr class="hr-blue hr-horizontal w-75 mx-auto mt-2">
+                    </div>
+                        
+                <!-- FIM DE LISTA -->
+                <% }} %>
+            </div>
+        </div>
+        <!-- FIM DE ULTIMA ATIVIDADE -->
+</div>
+
+
+
+<!-- EDIT PROFILE PIC MODAL -->
+<div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit profile pic</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <input type="text" class="form-control" id="input-profile-pic-modal" placeholder="url..">
+            <img id="profile-pic-preview" class="w-100 mt-1" src="" alt="">
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary">Refresh</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" onclick="modalCopyUrl()" data-dismiss="modal">Ok</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!-- Flash messages -->
+<div class="flash-msg w-100" id="flash-success" style="display: none">
+    <div class="alert alert-success">
+        <span class="text-secondary work-sans">success</span>
+    </div>
+</div>
+<div class="flash-msg w-100" id="flash-failure" style="display: none">
+    <div class="alert alert-danger">
+        <span class="text-secondary work-sans">fail</span>
+    </div>
+</div> 
+
+
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<!-- Font awsome -->
+<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+<!-- Moment time -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.js"></script>
+<!-- Own code -->
+<script src="/js/user_self_page.js" ></script>
+<!-- FLASH MESSAGES -->
+<% if(messageFailure && messageFailure.length > 0){ %>
+    <% console.log("Message: ",messageFailure) %>
+    <script>
+        flash("failure","<%= messageFailure %>")
+    </script>
+<% } %>
+<% if(messageSuccess && messageSuccess.length > 0){ %>
+    <script>
+        flash("success","<%= messageSuccess %>")
+    </script>
+<% } %>
+</body>
+</html>

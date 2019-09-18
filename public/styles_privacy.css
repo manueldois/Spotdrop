@@ -1,0 +1,68 @@
+
+body{
+    height: 100vh;
+    background-color: darkcyan;
+    overflow-x: hidden;
+}
+
+/* Navbar */
+.navbar{
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.nav-link{
+    color: white;
+    font-weight: bold;
+    font-size: 1.4em;
+}
+.nav-link:hover{
+    color: tomato;
+}
+.navbar-brand{
+    width: 10vw;
+}
+.nav-item-right{
+    height: 100%;
+    background: none !important;
+    color: white;
+    border: 2px solid white;
+}
+.nav-item-right:hover *{
+    color: greenyellow
+}
+.nav-item-right:hover{
+    color: greenyellow
+}
+/* Text */
+*{
+    font-family: 'Ubuntu', sans-serif;
+    color: white;
+}
+.raleway{
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold
+}
+
+/* Div */
+#main1{
+    
+}
+
+hr{
+    border: 0.5px solid whitesmoke;
+}
+hr.light{
+    border: 0.5px solid rgb(219, 241, 255);
+
+}
+.footer{
+    margin-right: auto;
+}
+.footer a{
+    font-family: 'Raleway', sans-serif;
+    color: white;
+    font-size: 1.3em;
+}
+
+
+

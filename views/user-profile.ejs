@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">  
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:500|Work+Sans" rel="stylesheet">
+    <!-- Own -->
+    <link rel="stylesheet" href="/styles_user-profile.css"> 
+    <!-- Hotjar Tracking Code for https://spotdrop.herokuapp.com -->
+    <script>
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:839863,hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
+    <title>User profile</title>
+</head>
+<body>
+
+<!-- Pass EJS data to JS -->
+<% var profile_data = JSON.stringify(user_p)  %>
+<div id="profile-data" data-profile="<%=profile_data%>" class="d-none"></div>
+<% if(user){ %>
+    <% console.log("Got user: ",user) %>
+    <% var user_data = JSON.stringify(user)  %>
+    <div id="user-data" data-user="<%=user_data%>" class="d-none"></div>
+<% } %>
+
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-md bg-green">
+    <% if(user){ %>
+        <a class="navbar-brand" href="/myprofile">
+            <div style="width: 40px">
+                <div class="nav-profile-img" style="background-image: url('<%= user.info.profile_pic %>');" ></div>
+            </div> 
+        </a>
+    <% } %>
+    <div class="">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item ml-3">
+                <a href="/index" class="nav-link" > <img src="/icons/chevron-left.svg" width="10px" class="mt-1 ml-1" alt=""> Back to map </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- CONTENT -->
+<div class="main1">
+        <!-- USER PROFILE -->
+        <div class="mt-5 w-100">
+                <div class="d-flex flex-row align-items-flex-start">
+                    <div style="width: 150px; flex: none">
+                        <div class="profile-img w-100" style="background-image: url('<%= user_p.info.profile_pic %>');" ></div>
+                    </div>
+                    <div class="ml-5">
+                        <h3><%= user_p.username %></h3>
+                        <h4><%= user_p.info.city %></h4>
+                        <span><%= user_p.users_followers.length %> followers</span><br>
+                        <span>member since: </span><span class="txt-date" data-date="<%= user_p.info.creation_date %>"></span><br>
+                    
+                    </div>
+                </div>
+
+                <div class="w-50 ml-auto mt-4" style="display:none" id="div-follow">
+                    <span class="" id="following-info"></span> <br>
+                    <button class="w-100 btn btn-primary" id="btn-follow">Follow user</button>
+                    <button class="w-100 btn btn-success" style="display: none" id="btn-unfollow">Unfollow user</button>
+                </div>
+
+                <h5 class="mt-5">About me</h5>
+                <div class="about w-100 mt-3 mb-5"> <p><%= user_p.info.about %></p> </div>
+        </div>
+
+        <hr class="hr-halfpage mb-4">
+        
+        <!-- ULTIMA ATIVIDADE -->
+        <div class="w-100">
+            <div class="panel-dark p-4" id="latest-activity">
+                <div class="clearfix mb-5">
+                    <h2 class="float-left">Latest Activity</h2>
+                    <a href="/index/?user=<%=user_p._id%>" class="btn btn-warning float-right">See drops on map</a>
+                </div>
+               
+                
+               <!-- LISTA -->
+               <% if(latestActivity){ %>
+                <% for(var i = latestActivity.length -1; i >= 0; i--){ %>
+                    <% var drop = latestActivity[i] %>
+                    <div class="latest-activity-item" >
+                        <div class="row h-100">
+                            <div class="col-6">
+                                <div class="d-flex flex-column h-100">
+                                    <div class="latest-activity-header">
+                                        <span class="h4"><%= user_p.username %></span> <span class="txt-ago" data-date="<%= drop.creation_date%>"></span>
+                                        <% if(drop.hashtag){ %>
+                                        <h4 style="color: red">#<%= drop.hashtag.hashtag %></h3>
+                                        <% } %>
+                                    </div>
+                                    <p class="latest-activity-comment p-2"><%= drop.creation_post.comment %></p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <a href="/drop/<%=drop._id%>"><div class="latest-activity-img" style="background-image: url('<%= drop.creation_post.images[0] %>')"></div></a>
+                            </div>
+                        </div>
+                        <hr class="hr-blue hr-horizontal w-75 mx-auto mt-2">
+                    </div>
+                        
+                <!-- FIM DE LISTA -->
+                <% }} %>
+            </div>
+        </div>
+        <!-- FIM DE ULTIMA ATIVIDADE -->
+
+    </div>
+</div>
+
+
+<!-- Flash messages -->
+<div class="flash-msg w-100" id="flash-success" style="display: none">
+    <div class="alert alert-success">
+        <span class="text-secondary work-sans">success</span>
+    </div>
+</div>
+<div class="flash-msg w-100" id="flash-failure" style="display: none">
+    <div class="alert alert-danger">
+        <span class="text-secondary work-sans">fail</span>
+    </div>
+</div> 
+
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<!-- Moment time -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.js"></script>
+<!-- Autosize -->
+<script src='/js/autosize.js'></script>
+<script>
+    autosize(document.querySelectorAll('textarea'));
+</script>
+<!-- Own -->
+<script src="/js/user_page.js" ></script>
+
+<!-- FLASH MESSAGES -->
+<% if(messageFailure && messageFailure.length > 0){ %>
+    <% console.log("Message: ",messageFailure) %>
+    <script>
+        flash("failure","<%= messageFailure %>")
+    </script>
+<% } %>
+<% if(messageSuccess && messageSuccess.length > 0){ %>
+    <script>
+        flash("success","<%= messageSuccess %>")
+    </script>
+<% } %>
+
+</body>
+</html>
