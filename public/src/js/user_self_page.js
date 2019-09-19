@@ -1,3 +1,6 @@
+import '../scss/user_self_page.scss';
+
+
 $(".btn-edit").click(function(e){
     var input = $("#"+$(this).data().input);
     input.removeAttr("readonly");

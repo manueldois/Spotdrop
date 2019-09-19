@@ -1,4 +1,5 @@
-console.log("Start")
+import '../scss/user_other_page.scss';
+
 
 // Get data from EJS
 var USER_P;

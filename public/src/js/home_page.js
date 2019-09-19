@@ -1,5 +1,4 @@
-console.log("Start")
-
+import '../scss/home_page.scss';
 
 $(document).ready(function() {
     var img_holders = $(".img-holder")

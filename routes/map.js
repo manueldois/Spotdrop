@@ -1,11 +1,11 @@
 var express = require("express");
 var passport = require("passport");
 
-var IndexCtrl = require("../controllers/index.js")
+var MapCtrl = require("../controllers/map.js")
 
 var app = express.Router();
 
-app.get("/index",IndexCtrl.renderIndex)
+app.get("/map",MapCtrl.renderMap)
 
 
 

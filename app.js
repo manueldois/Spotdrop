@@ -4,7 +4,13 @@ var express = require("express"),
     bodyParser = require("body-parser"),
     methodOverride = require("method-override"),
     passport = require("passport"),
-    flash = require("connect-flash");
+    flash = require("connect-flash"),
+    companion = require("@uppy/companion")
+
+mongoose.connect("mongodb://localhost/SD1", err => {
+    if (err) { console.error("Cannot connect to DB: ", err); process.exit() }
+})
+
 
 var app = express();
 
@@ -18,6 +24,23 @@ app.use(expressSession({
     resave: false, // só guarda as seessions em  é feito o login,
     saveUninitialized: false // Não criar cookies a quem n fizer login
 }));
+
+// Companion
+const options = {
+    providerOptions: {
+        google: {
+            key: 'GOOGLE_KEY',
+            secret: 'GOOGLE_SECRET'
+        }
+    },
+    server: {
+        host: 'localhost:3000',
+        protocol: 'http',
+    },
+    filePath: '/uploads'
+}
+
+app.use(companion.app(options))
 
 // Passport
 app.use(passport.initialize()); // Ligar express e passport
@@ -34,39 +57,23 @@ app.use(function (req, res, next) {
 });
 
 // Rotas
-var indexRoute = require("./routes/index.js"),
+var mapRoute = require("./routes/map.js"),
     usersRoute = require("./routes/users.js"),
-    dropsRoute = require("./routes/drops.js");
-apiRoute = require("./routes/api.js")
+    dropsRoute = require("./routes/drops.js"),
+    apiRoute = require("./routes/api.js");
 
-app.use(indexRoute);
+app.use(mapRoute);
 app.use(usersRoute);
 app.use(dropsRoute);
 app.use(apiRoute)
 
-// Models
-var Drop = require("./models/drop.js"),
-    Post = require("./models/post.js"),
-    Reply = require("./models/reply.js"),
-    User = require("./models/user.js"),
-    Hashtag = require("./models/hashtag.js")
 
-// Controllers
-var DatabaseCtrl = require("./controllers/database"),
-    UserCtrl = require("./controllers/user"),
-    IndexCtrl = require("./controllers/index"),
-    DropsCtrl = require("./controllers/drops")
-
-
-mongoose.connect("mongodb://localhost/SD1")
-// mongoose.connect("mongodb://manueldois:LjsFtukW@ds211289.mlab.com:11289/spotdropv1");
-
-app.listen(process.env.PORT, process.env.IP, function () {
-    console.log("server started on heroku host");
+app.listen(process.env.PORT || 3000, process.env.IP || 'localhost', function () {
+    console.log(`Server started on: http://${process.env.IP || 'localhost'}:${process.env.PORT || 3000}`);
 });
 
 app.get("/", function (req, res) {
-    res.render("homepage.ejs", { user: req.user });
+    res.render("home_page.ejs", { user: req.user });
 });
 app.get("/privacy", function (req, res) {
     res.render("privacy.ejs");

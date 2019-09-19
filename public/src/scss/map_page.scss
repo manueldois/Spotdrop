@@ -302,7 +302,7 @@ color{
     left: 0;
     width: 100vw;
     height: 10vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.5),rgb(0, 0, 0,0));
+    background: linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0));
     z-index: 2000;
 }
 
@@ -410,7 +410,7 @@ a, input, textarea{
     border: none;
     width: 75%;
     height: 64px;
-    background-image: url("icons/google+/btn_google_signin_light_normal_web@2x.png");
+    background-image: url("/icons/google+/btn_google_signin_light_normal_web@2x.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-color: rgba(0, 0, 0, 0.0)
@@ -419,7 +419,7 @@ a, input, textarea{
     border: none;
     width: 75%;
     height: 58px;
-    background-image: url("icons/facebook/facebook-sign-in-button-1.png");
+    background-image: url("/icons/facebook/facebook-sign-in-button-1.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-color: rgba(0, 0, 0, 0.0)

@@ -9,18 +9,8 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Ubuntu:500|Work+Sans" rel="stylesheet">
     <!-- Own -->
-    <link rel="stylesheet" href="/styles_user-profile.css"> 
-    <!-- Hotjar Tracking Code for https://spotdrop.herokuapp.com -->
-    <script>
-        (function(h,o,t,j,a,r){
-            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-            h._hjSettings={hjid:839863,hjsv:6};
-            a=o.getElementsByTagName('head')[0];
-            r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-            a.appendChild(r);
-        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-    </script>
+    <link rel="stylesheet" href="/dist/css/user_other_page.css"> 
+
     <title>User profile</title>
 </head>
 <body>
@@ -47,7 +37,7 @@
     <div class="">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item ml-3">
-                <a href="/index" class="nav-link" > <img src="/icons/chevron-left.svg" width="10px" class="mt-1 ml-1" alt=""> Back to map </a>
+                <a href="/map" class="nav-link" > <img src="/icons/chevron-left.svg" width="10px" class="mt-1 ml-1" alt=""> Back to map </a>
             </li>
         </ul>
     </div>
@@ -87,7 +77,7 @@
             <div class="panel-dark p-4" id="latest-activity">
                 <div class="clearfix mb-5">
                     <h2 class="float-left">Latest Activity</h2>
-                    <a href="/index/?user=<%=user_p._id%>" class="btn btn-warning float-right">See drops on map</a>
+                    <a href="/map/?user=<%=user_p._id%>" class="btn btn-warning float-right">See drops on map</a>
                 </div>
                
                 
@@ -145,12 +135,12 @@
 <!-- Moment time -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.js"></script>
 <!-- Autosize -->
-<script src='/js/autosize.js'></script>
+<script src='/dist/js/autosize.js'></script>
 <script>
     autosize(document.querySelectorAll('textarea'));
 </script>
 <!-- Own -->
-<script src="/js/user_page.js" ></script>
+<script src="/dist/js/user_other_page.js" ></script>
 
 <!-- FLASH MESSAGES -->
 <% if(messageFailure && messageFailure.length > 0){ %>

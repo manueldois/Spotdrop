@@ -128,7 +128,7 @@ body{
     height: 100vh;
     top:0;
     left:0;
-    background-color: rgb(0, 0, 0,0.3);
+    background-color: rgba(0, 0, 0,0.3);
     background-blend-mode: multiply;
     background-size: cover;
     background-position: center;
@@ -177,7 +177,7 @@ hr.light{
     border: none;
     width: 270px;
     height: 64px;
-    background-image: url("icons/google+/btn_google_signin_light_normal_web@2x.png");
+    background-image: url("/icons/google+/btn_google_signin_light_normal_web@2x.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-color: rgba(0, 0, 0, 0.0)
@@ -186,7 +186,7 @@ hr.light{
     border: none;
     width: 270px;
     height: 58px;
-    background-image: url("icons/facebook/facebook-sign-in-button-1.png");
+    background-image: url("/icons/facebook/facebook-sign-in-button-1.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-color: rgba(0, 0, 0, 0.0)

@@ -77,15 +77,15 @@ exports.newDrop = function(req,res){
             if(user_found){
                 DatabaseCtrl.saveNewDrop(newDrop,newPost).then( () => {
                     req.flash("success","Drop saved successfuly!")
-                    res.redirect("/index")
+                    res.redirect("/map")
                 }).catch( (reason) => {
                     req.flash("failure",reason)
-                    res.redirect("/index")
+                    res.redirect("/map")
                 })
             }else{
                 console.log("Did not find that user")
                 req.flash("failure","Did not find that user")
-                res.redirect("/index")
+                res.redirect("/map")
             }
         })
     }).catch(err => console.log(err))
@@ -140,5 +140,5 @@ exports.isLoggedIn = function (req,res,next){
         return next();
     }
     req.flash("failure","You need to be logged in to view this page")
-    res.redirect("/index");    
+    res.redirect("/map");    
 }

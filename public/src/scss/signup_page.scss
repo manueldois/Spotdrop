@@ -108,7 +108,7 @@ input{
     margin-top: 20%;
 }
 .img-user-add:hover{
-    filter: invert(); /* quero uma salva de palmas please */
+    filter: #{"invert(1)"}; 
 }
 .profile-img{
     padding-top: 100%; /* 1:1 Aspect Ratio */

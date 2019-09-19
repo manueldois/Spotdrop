@@ -1,4 +1,5 @@
-console.log("Start");
+import '../scss/drop_page.scss';
+
 // Get data from EJS
 var DROP;
 var USER;

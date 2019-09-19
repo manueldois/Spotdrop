@@ -1,0 +1,119 @@
+body {
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #29ABE2, #0071BC); }
+
+/* Colors */
+.bg-green {
+  background-color: #18ce00; }
+
+/* Navbar */
+.navbar {
+  background: rgba(0, 0, 0, 0.6); }
+
+.nav-link {
+  color: white;
+  font-weight: bold;
+  font-size: 1.4em; }
+
+.nav-link:hover {
+  color: tomato; }
+
+.navbar-brand {
+  width: 10vw; }
+
+.nav-item-right {
+  height: 100%;
+  background: none !important;
+  color: white;
+  border: 2px solid white; }
+
+.nav-item-right:hover * {
+  color: greenyellow; }
+
+.nav-item-right:hover {
+  color: greenyellow; }
+
+/* Form */
+form label {
+  color: white;
+  font-size: 1.5em; }
+
+form small {
+  color: lightgray; }
+
+/* Text */
+* {
+  font-family: 'Ubuntu', sans-serif;
+  color: white; }
+
+input {
+  color: black; }
+
+/* Flash message */
+.flash-msg {
+  position: absolute;
+  top: 5vh;
+  z-index: 4;
+  font-family: 'Work Sans', sans-serif; }
+
+/* Filestack */
+#__filestack-picker * {
+  color: black; }
+
+/* Modal */
+.modal-content {
+  background-color: #333333; }
+
+/* Buttons */
+.btn-round {
+  border-radius: 20000px;
+  background: none; }
+
+.btn-lg {
+  border: solid 2px; }
+
+.btn-white {
+  color: white;
+  border-color: white; }
+
+#btn-uploadpic {
+  min-width: 50%;
+  border: solid 3px; }
+
+#btn-uploadpic:hover {
+  background-color: #535353; }
+
+#btn-submit {
+  min-width: 75%;
+  min-height: 50px;
+  border: solid 3px;
+  margin-top: 20%;
+  margin-bottom: 10%; }
+
+#btn-submit:hover {
+  background-color: #535353; }
+
+/* Images */
+.img-user-add {
+  width: 40%;
+  margin-top: 20%; }
+
+.img-user-add:hover {
+  filter: invert(1); }
+
+.profile-img {
+  padding-top: 100%;
+  /* 1:1 Aspect Ratio */
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  flex-shrink: 0; }
+
+/* Divs */
+.main1 {
+  width: 100%;
+  padding-left: 5%;
+  padding-right: 5%;
+  margin-top: 5vh; }
+

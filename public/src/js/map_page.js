@@ -1,3 +1,6 @@
+import '../scss/map_page.scss';
+
+console.log("Map page script running")
 //  Get user data from html
 var USER;
 var isLogged = false;
@@ -32,10 +35,10 @@ var heatmap_data = [
     new google.maps.LatLng(37.782745, -122.444586),
     new google.maps.LatLng(37.782842, -122.443688)
   ]
-// var heatmap = new google.maps.visualization.HeatmapLayer({
-//     data: [],
-//     map: null
-// });
+var heatmap = new google.maps.visualization.HeatmapLayer({
+    data: [],
+    map: null
+});
 // Places service
 var service = new google.maps.places.PlacesService(map);
 // Autocomplete
@@ -107,7 +110,7 @@ function hideAddDropIW(){
 // Listen to map zoom. Above zoom 13 convert to heatmap
 const trigger_heatmap_zoom = 13;
 var map_mode = "markers";
-// map.addListener('zoom_changed',handleZoomChanged)
+map.addListener('zoom_changed',handleZoomChanged)
 function handleZoomChanged(){
     var zoom = map.getZoom();
 
@@ -600,6 +603,7 @@ function findIfIvSeenDrop(drop_id){
 
 
 //  Sidebar
+window.setSBar = setSBar
 function setSBar(sbarID){
     $('#navbarNav').collapse('hide');
     var sbar = $("#"+sbarID)
