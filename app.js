@@ -61,8 +61,8 @@ app.use(dropsRoute);
 app.use(apiRoute)
 
 
-app.listen(process.env.PORT || 3000, process.env.IP || 'localhost', function () {
-    console.log(`Server started on: http://${process.env.IP || 'localhost'}:${process.env.PORT || 3000}`);
+app.listen(process.env.PORT || 3000, function () {
+    console.log(`Server started on: ${process.env.PORT || 3000}`);
 });
 
 app.get("/", function (req, res) {
