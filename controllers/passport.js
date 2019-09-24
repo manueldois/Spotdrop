@@ -3,7 +3,6 @@ var User = require("../models/user"),
     LocalStrategy = require("passport-local").Strategy,
     GoogleStrategy = require("passport-google-oauth20"),
     FacebookStrategy = require('passport-facebook').Strategy,
-    keys = require("./keys.js"),
     util = require("util")
 
 module.exports = function(passport){
@@ -46,9 +45,10 @@ module.exports = function(passport){
             newUser.login_type = "local";            
             newUser.info.name = req.body.name;
             newUser.info.city = req.body.city;
-            newUser.info.profile_pic = req.body.profilepic;
+            newUser.info.profile_pic = req.body.profile_pic || '/icons/user.svg';            
             newUser.info.about = "";
             newUser.info.creation_date = new Date().toISOString();
+            
             await newUser.generateHash(req.body.password).then( (hash) => {
                 newUser.password = hash
                 console.log("Hash: ",hash)

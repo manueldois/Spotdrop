@@ -1,117 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Bootstrap 4 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Ubuntu:500|Work+Sans" rel="stylesheet">
     <!-- Own -->
-    <link rel="stylesheet" href="/dist/css/signup_page.css">  
+    <link rel="stylesheet" href="/dist/css/signup_page.css">
 
     <title>Create new account</title>
 </head>
+
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-md py-1 px-4 ">
-    <a class="navbar-brand" href="/"> <img src="img/Spotdrop logo sm-01.png" alt="" style="height: 6vh" id="img-logo-nav" > <span class="ml-2">Spotdrop</span> </a>
-    <div class="">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md py-1 px-4 ">
+        <a class="navbar-brand" href="/"> <img src="img/Spotdrop logo sm-01.png" alt="" style="height: 6vh"
+                id="img-logo-nav"> <span class="ml-2">Spotdrop</span> </a>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <button type="button" class="btn nav-item-right" data-toggle="modal" data-target="#loginModal"><img src="icons/padlock.svg" width="25px" alt="" class="ml-0 mr-2">Log-in</button>
+                <button type="button" class="btn nav-item-right" data-toggle="modal" data-target="#loginModal"><img
+                        src="icons/padlock.svg" width="25px" alt="" class="ml-0 mr-2">Log-in</button>
             </li>
-        </ul>        
+        </ul>
+    </nav>
+
+    <!-- Form -->
+    <div class="main1">
+        <form action="/signup" class="w-100" method="POST">
+            <div class="row">
+                <div class="mx-auto col-lg-8 col-md-12">
+                    <h1 class="mb-3">Create a new Spotdrop account</h1>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" required name="name" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" required name="username"
+                            placeholder="pick a unique username..">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" required name="email"
+                            placeholder="place a valid email address..">
+                        <small>Your e-mail will never be visible to anyone else</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">Home city</label>
+                        <input type="text" class="form-control" required name="city"
+                            placeholder="where do you live? eg. Lisbon, Berlin..">
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" required name="password"
+                                    placeholder="at least 6 characters..">
+                            </div>
+                        </div>
+                        <div class="col text-right">
+                            <div class="form-group">
+                                <label for="confirmpassword">Confirm password</label>
+                                <input type="password" class="form-control" required name="confirmpassword"
+                                    placeholder="type your password again..">
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="profile-pic"
+                        value="https://storage.googleapis.com/spotdrop-media/profile_icon_png_1113459.png">
+
+                    <button class="btn btn-outline btn-white btn-round btn-lg d-block mx-auto" id="btn-submit"
+                        type="submit">Sign up!</button>
+                </div>
+            </div>
+        </form>
+
     </div>
-</nav>
 
-<!-- Form -->
-<div class="main1">
-    <form action="/signup" class="w-100" method="POST">
-        <div class="row">
-            <div class="col-lg-5 col-md-12">
-                <h1 class="mb-3" >Create a new Spotdrop account</h1>
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" required name="name" placeholder="" >
-                </div>
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" class="form-control" required name="username" placeholder="pick a unique username.." >
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" required name="email" placeholder="place a valid email address.." >
-                    <small>Your e-mail will never be visible to anyone else</small>
-                </div>
-                <div class="form-group">
-                    <label for="city">Home city</label>
-                    <input type="text" class="form-control" required name="city" placeholder="where do you live? eg. Lisbon, Berlin.." >
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" required name="password" placeholder="at least 6 characters.." >
-                        </div>
-                    </div>
-                    <div class="col text-right">
-                        <div class="form-group">
-                            <label for="confirmpassword">Confirm password</label>
-                            <input type="password" class="form-control" required name="confirmpassword" placeholder="type your password again.." >
-                        </div>
-                    </div>
-                </div>
-                <input type="hidden" name="profilepic" required id="input-profile-pic">
-        
-            </div>
-
-            <div class="offset-lg-2 col-lg-5 col-md-12">
-                <?xml version="1.0" encoding="utf-8"?>
-                <div style="width: 250px; flex-shrink: 0; margin: auto; margin-top: 10vh" >
-                    <img src='/icons/user-add.svg' id="self-profile-pic-placeholder" class="w-100" alt="">
-                    <div class="profile-img w-100" id="self-profile-pic" style="background-image: url(); display:none" ></div>
-                </div>
-                <!-- <img class="img-user-add mx-auto d-block" src="icons/user-add.svg" alt=""> -->
-                <button class="btn btn-outline btn-white btn-round btn-lg d-block mx-auto mt-3" type="button" id="btn-uploadpic">Upload profile photo</button>
-                <button class="btn btn-outline btn-white btn-round btn-lg d-block mx-auto" id="btn-submit" type="submit" >Sign up!</button>
-            </div>
+    <!-- Flash messages -->
+    <div class="flash-msg w-100" id="flash-success" style="display: none">
+        <div class="alert alert-success">
+            <span class="text-secondary work-sans">success</span>
         </div>
-    </form>
-
-</div>
-
-<!-- Flash messages -->
-<div class="flash-msg w-100" id="flash-success" style="display: none">
-    <div class="alert alert-success">
-        <span class="text-secondary work-sans">success</span>
     </div>
-</div>
-<div class="flash-msg w-100" id="flash-failure" style="display: none">
-    <div class="alert alert-danger">
-        <span class="text-secondary work-sans">fail</span>
+    <div class="flash-msg w-100" id="flash-failure" style="display: none">
+        <div class="alert alert-danger">
+            <span class="text-secondary work-sans">fail</span>
+        </div>
     </div>
-</div> 
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<!-- Own -->
-<script src="/dist/js/signup_page.js" ></script>
-<!-- FLASH MESSAGES -->
-<% if(messageFailure && messageFailure.length > 0){ %>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- Own -->
+    <script src="/dist/js/signup_page.js"></script>
+    <!-- FLASH MESSAGES -->
+    <% if(messageFailure && messageFailure.length > 0){ %>
     <% console.log("Message: ",messageFailure) %>
     <script>
-        flash("failure","<%= messageFailure %>")
+        flash("failure", "<%= messageFailure %>")
     </script>
-<% } %>
-<% if(messageSuccess && messageSuccess.length > 0){ %>
+    <% } %>
+    <% if(messageSuccess && messageSuccess.length > 0){ %>
     <script>
-        flash("success","<%= messageSuccess %>")
+        flash("success", "<%= messageSuccess %>")
     </script>
-<% } %>
+    <% } %>
 </body>
+
 </html>

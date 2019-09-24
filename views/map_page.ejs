@@ -26,7 +26,7 @@
     <% } %>
 
     <!-- NAVBAR -->
-    <nav class="navbar navbar-dark navbar-expand-md fixed-top bg-green">
+    <nav class="navbar navbar-dark navbar-expand-md bg-green">
         <a class="navbar-brand mr-2" href="#">
 
             <% if(!user){ %>
@@ -39,7 +39,7 @@
 
         </a>
 
-        <button class="btn btn-danger mr-3 d-md-none ml-auto btn-add-drop">Upload</button>
+        <button class="btn mr-3 d-md-none ml-auto btn-add-drop">Upload</button>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
             <span class="navbar-toggler-icon text-white"></span>
@@ -71,8 +71,7 @@
 
             </ul>
             <% } %>
-            <!-- <button class="btn btn-danger mr-3" id="btn-add-drop">Upload</button> -->
-            <button class="btn btn-danger mr-3 d-none d-md-block btn-add-drop">Upload</button>
+            <button class="btn mr-3 d-none d-md-block btn-add-drop">Upload</button>
             <div class="dropdown">
                 <input class="form-control" id="src-bar" type="search" placeholder="Search" aria-label="Search">
 
@@ -82,9 +81,6 @@
             </div>
         </div>
     </nav>
-
-
-
 
 
     <% if(user){ %>
@@ -358,12 +354,11 @@
                                 placeholder="...">
                         </div>
 
-                        <!-- Open filestack -->
-                        <div id="sbar-form-upload-empty" class="sbar-form-upload mt-3" style="cursor: pointer">
-                            <img src="/icons/upload-white.svg" class="d-block w-25 mt-3 mx-auto" alt="">
+                        <!-- Open uppy -->
+                        <button type="button" id="sbar-form-upload-empty" class="open-uppy sbar-form-upload mt-3" style="cursor: pointer">
                             <h5 class="work-sans font-weight-bold text-center">Click to open upload modal or drag
                                 inside.. </h5>
-                        </div>
+                        </button>
 
                         <!-- Preview pics -->
                         <div id="sbar-form-preview-img" class="sbar-form-upload mt-3" style="display: none">
@@ -375,7 +370,7 @@
 
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-danger mt-3 w-100" id="btn-add-imgs">Add more
+                            <button type="button" class="open-uppy btn btn-danger mt-3 w-100" id="btn-add-imgs">Add more
                                 pictures...</button>
                         </div>
 
@@ -486,8 +481,6 @@
     <script src="<%= maps_url_with_key %>"></script>
     <!-- Moment time -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.js"></script>
-    <!-- Filestack -->
-    <script src="https://static.filestackapi.com/v3/filestack.js"></script>
     <!-- Observables -->
     <script src="https://unpkg.com/@reactivex/rxjs@5.3.0/dist/global/Rx.js"></script>
     <!-- Autosize -->

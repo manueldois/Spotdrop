@@ -5,6 +5,10 @@ module.exports = {
     watchOptions: {
         ignored: /node_modules/
     },
+    optimization: {
+		// We no not want to minimize our code.
+		minimize: false
+	},
     mode: 'development',
     entry: {
         signup_page: './src/js/signup_page',

@@ -16,7 +16,7 @@ var DropSchema = new mongoose.Schema({
         ref: "Hashtag"
     },
     title: String,
-    icon: String, 
+    icon: String,
     
     followers_list: [{ // emitir evento a todos os users k estão a fazer follow qnd há novos posts
         type: mongoose.Schema.Types.ObjectId,

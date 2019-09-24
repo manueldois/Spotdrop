@@ -11,21 +11,14 @@ const uppy = Uppy.Core({ allowMultipleUploads: false })
         trigger: '#btn-uploadpic'
     })
     .use(Uppy.XHRUpload, { endpoint: 'http://localhost:3000/api/upload-profile', fieldName: 'avatar' })
-    // .use(Uppy.GoogleDrive, { target: Uppy.Dashboard, companionUrl: 'http://localhost:3000', })
+
 
 // Form
 $("form").submit(function (event) {
-    if ($("#input-profile-pic").val()) {
-        if ($("input[name='password']").val() == $("input[name='confirmpassword']").val()) {
-            return true
-        } else {
-            alert("Passwords dont match")
-            event.preventDefault();
-            return false
-        }
-
+    if ($("input[name='password']").val() == $("input[name='confirmpassword']").val()) {
+        return true
     } else {
-        alert("Upload a profile pic")
+        alert("Passwords dont match")
         event.preventDefault();
         return false
     }

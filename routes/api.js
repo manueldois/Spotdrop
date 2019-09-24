@@ -4,16 +4,22 @@ var express = require("express"),
     Hashtag = require("../models/hashtag"),
     DatabaseCtrl = require("../controllers/database"),
     UserCtrl = require("../controllers/user"),
-    multer = require('multer'),
-    upload = multer({ dest: 'uploads/' });
+    StorageCtrl = require("../controllers/storage"),
+    uuidv1 = require('uuid/v1'),
+    escapeStringRegexp = require('escape-string-regexp');
 
 var app = express.Router();
 
-app.post('/api/upload-profile', upload.single('avatar'), function (req, res, next) {
-    console.log(req)
-    res.sendStatus(200)
-    // req.file is the `avatar` file
-    // req.body will hold the text fields, if there were any
+app.post('/api/drop/upload-photo', function(req, res, next){
+    req.filePath = '/Drops'
+    req.fileName = uuidv1()
+    next()
+}, StorageCtrl.upload.single('photo'), function (req, res) {
+    if(req.file && req.file.cloudUrl){
+        res.status(200).json({cloudUrl: req.file.cloudUrl})
+    }else{
+        res.sendStatus(400)
+    }
 })
 app.get("/api/drops", function (req, res) {
 

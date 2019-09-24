@@ -92,6 +92,7 @@ $(".txt-ago").show(function(){
 })
 
 // Flash messages
+window.flash = flash
 function flash(type,message){
     console.log(type,message)
     if(type == "success"){

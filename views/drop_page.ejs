@@ -1,176 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Bootstrap 4 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Ubuntu:500|Work+Sans" rel="stylesheet">
     <!-- Own -->
-    <link rel="stylesheet" href="/dist/css/drop_page.css"> 
+    <link rel="stylesheet" href="/dist/css/drop_page.css">
 
     <title>Drop page</title>
 </head>
 
 <body>
 
-<% var drop_json = JSON.stringify(drop) %>
-<div id="drop-data" data-drop="<%= drop_json %>" ></div>
-<% if(user){ %>
+    <% var drop_json = JSON.stringify(drop) %>
+    <div id="drop-data" data-drop="<%= drop_json %>"></div>
+    <% if(user){ %>
     <% var user_json = JSON.stringify(user) %>
     <div id="user-data" data-user="<%= user_json %>"></div>
-<% }else{ %>
+    <% }else{ %>
     <div id="user-data" data-user=""></div>
-<% } %>
+    <% } %>
 
 
 
-
-<div class="w-100 d-flex flex-row">
-    <!-- SIDEBAR -->
-    <div class="sidebar">
-        <div class="sbar-nav pl-1 d-flex flex-row align-items-center justify-content-between">
-            <a href="/map" class="sbar-nav-link">
-                <img src="/icons/chevron-left.svg" width="10px" class="mt-1 ml-1" alt="">
-                <span class="h6">Back to map</span>
-            </a>
-            <% if(!isFollowing){ %>
+    <!-- MAIN -->
+    <div class="w-100 d-flex flex-row">
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div class="sbar-nav pl-1 d-flex flex-row align-items-center justify-content-between">
+                <a href="/map" class="sbar-nav-link">
+                    <img src="/icons/chevron-left.svg" width="10px" class="mt-1 ml-1" alt="">
+                    <span class="h6">Back to map</span>
+                </a>
+                <% if(!isFollowing){ %>
                 <button class="btn" id="btn-unfollow" data-id="<%= drop._id %>" style="display: none">Unfollow</button>
                 <button class="btn" id="btn-follow" data-id="<%= drop._id %>">Follow</button>
-            <% }else{ %>
+                <% }else{ %>
                 <button class="btn" id="btn-unfollow" data-id="<%= drop._id %>">Unfollow</button>
                 <button class="btn" id="btn-follow" data-id="<%= drop._id %>" style="display: none">Follow</button>
-            <% } %>
-        </div>
-        <!-- POSTS -->
-        <div class="w-100 mt-2 p-3">
-            
-            <!-- CREATION POST -->
-            <div class="post" data-post-id="<%=drop.posts_list[0]._id%>" data-owner-id="<%=drop.owner._id%>" data-drop-id="<%= drop._id %>">
-                
-                <div class="d-flex flex-row align-items-flex-start">
-                    <div style="width: 100px; flex: none">
-                        <div class="sbar-profile-img w-100" style="background-image: url('<%= drop.owner.info.profile_pic %>');" ></div>
-                    </div>
-                    <div class="ml-3">
-                        <a href="/user/<%=drop.owner._id%>" class="username"><%= drop.owner.username %></a>
-                        <br>
-                        <span class="txt-date" data-date-iso="<%= drop.posts_list[0].creation_date %>"></span> 
-                        <br>
-                        <div class="mt-3"></div>
-                        <div class="w-100 d-flex flex-row flex-wrap align-items-center">
-                            <button class="btn-star" data-like=0> <img src="/icons/star-outline.svg" width="25px" alt=""> </button> 
-                            <span class="ml-2"><%= drop.posts_list[0].likes_list.length %></span>
-                        </div>
-                    </div>
-                </div>
-                
-                <p class="h4 mt-3"><%= drop.title %></p>
-                <% if(drop.hashtag){ %>
-                    <p class="h6 mt-2">#<%= drop.hashtag.hashtag %></p>
                 <% } %>
-                <% if(drop.posts_list[0].comment){ %>
-                    <p class="comment mt-3"><%= drop.posts_list[0].comment %></p>
-                <% } %>
+            </div>
+            <!-- POSTS -->
+            <div class="w-100 mt-2 p-3">
 
-            
-                <% var c_post = drop.posts_list[0]; %>
-                <% if(c_post.replies_list.length > 0){ %>
-                    <% for(var j = 0; j < c_post.replies_list.length; j++){ %>
-                        <% var c_reply = c_post.replies_list[j]; %>
-                            <div class="reply mt-3">
-                                <div class="sbar-divider-sub my-2"></div>
-                                <div class="d-flex flex-row align-items-flex-start">
-                                    <div style="width:50px; flex: none">
-                                        <div class="sbar-profile-img w-100" style="background-image: url('<%= c_reply.owner.info.profile_pic %>');" ></div>
-                                    </div>
-                                    <div class="ml-2">
-                                        <a href="/user/<%=c_reply.owner._id%>" class="username h6"><%= c_reply.owner.username %></a>
-                                        <p class="comment"><%= c_reply.comment %></p>
-                                    </div>
-                                </div>
+                <!-- CREATION POST -->
+                <div class="post" data-post-id="<%=drop.posts_list[0]._id%>" data-owner-id="<%=drop.owner._id%>"
+                    data-drop-id="<%= drop._id %>">
+
+                    <div class="d-flex flex-row align-items-flex-start">
+                        <div style="width: 100px; flex: none">
+                            <div class="sbar-profile-img w-100"
+                                style="background-image: url('<%= drop.owner.info.profile_pic %>');"></div>
+                        </div>
+                        <div class="ml-3">
+                            <a href="/user/<%=drop.owner._id%>" class="username"><%= drop.owner.username %></a>
+                            <br>
+                            <span class="txt-date" data-date-iso="<%= drop.posts_list[0].creation_date %>"></span>
+                            <br>
+                            <div class="mt-3"></div>
+                            <div class="w-100 d-flex flex-row flex-wrap align-items-center">
+                                <button class="btn-star" data-like=0> <img src="/icons/star-outline.svg" width="25px"
+                                        alt=""> </button>
+                                <span class="ml-2"><%= drop.posts_list[0].likes_list.length %></span>
                             </div>
-                <% }} %>
+                        </div>
+                    </div>
 
-                <div class="d-flex flex-row align-items-center">
+                    <p class="h4 mt-3"><%= drop.title %></p>
+                    <% if(drop.hashtag.hashtag){ %>
+                    <p class="h6 mt-2">#<%= drop.hashtag.hashtag %></p>
+                    <% } %>
+                    <% if(drop.posts_list[0].comment){ %>
+                    <p class="comment mt-3"><%= drop.posts_list[0].comment %></p>
+                    <% } %>
+
+
+                    <% var c_post = drop.posts_list[0]; %>
+                    <% if(c_post.replies_list.length > 0){ %>
+                    <% for(var j = 0; j < c_post.replies_list.length; j++){ %>
+                    <% var c_reply = c_post.replies_list[j]; %>
+                    <div class="reply mt-3">
+                        <div class="sbar-divider-sub my-2"></div>
+                        <div class="d-flex flex-row align-items-flex-start">
+                            <div style="width:50px; flex: none">
+                                <div class="sbar-profile-img w-100"
+                                    style="background-image: url('<%= c_reply.owner.info.profile_pic %>');"></div>
+                            </div>
+                            <div class="ml-2">
+                                <a href="/user/<%=c_reply.owner._id%>"
+                                    class="username h6"><%= c_reply.owner.username %></a>
+                                <p class="comment"><%= c_reply.comment %></p>
+                            </div>
+                        </div>
+                    </div>
+                    <% }} %>
+
+                    <div class="d-flex flex-row align-items-center">
+                        <div class="sbar-divider my-3"></div>
+                        <button class="btn btn-reply">reply</button>
+                    </div>
+                </div>
+
+                <!-- ADD POST -->
+                <% if(user){ %>
+                <div class="add-post">
+                    <div class="d-flex flex-row align-items-center justify-content-between">
+                        <!-- Profile pic -->
+                        <div style="width:70px; flex: none">
+                            <div class="sbar-profile-img w-100"
+                                style="background-image: url('<%= user.info.profile_pic %>');"></div>
+                        </div>
+                        <button class="btn-add-img btn">Add photos</button>
+                    </div>
+                    <form action='/drop/<%=drop._id %>/newpost' method="POST">
+                        <!-- Comment -->
+                        <textarea class="comment mt-3" name="comment" id=""></textarea>
+                        <!-- Hidden input - images urls -->
+                        <input type="hidden" name="urls" id="input-urls">
+                        <!-- Display pics -->
+                        <div class="mt-2 w-100 add-img" style="display: none">
+                            <div id="sbar-form-img-col">
+
+                            </div>
+                            <div class="mt-3 mb-2">
+                                <img id="sbar-form-add-more" src="/icons/add-plus-button.svg"
+                                    class="d-block w-50 mt-3 mx-auto " alt="">
+                            </div>
+                        </div>
+                        <div class="w-50 mt-2" style="margin-left:auto">
+                            <button class="btn btn-submit" type="submit">Submit post</button>
+                        </div>
+                    </form>
                     <div class="sbar-divider my-3"></div>
-                    <button class="btn btn-reply">reply</button>
                 </div>
-            </div>
+                <% } %>
 
-            <!-- ADD POST -->
-            <% if(user){ %>
-            <div class="add-post">
-                <div class="d-flex flex-row align-items-center justify-content-between">
-                    <!-- Profile pic -->
-                    <div style="width:70px; flex: none">
-                        <div class="sbar-profile-img w-100" style="background-image: url('<%= user.info.profile_pic %>');" ></div>
-                    </div>
-                    <button class="btn-add-img btn">Add photos</button>
-                </div>
-                <form action='/drop/<%=drop._id %>/newpost' method="POST">
-                    <!-- Comment -->
-                    <textarea class="comment mt-3" name="comment" id=""></textarea>
-                    <!-- Hidden input - images urls -->
-                    <input type="hidden" name="urls" id="input-urls" >
-                    <!-- Display pics -->
-                    <div class="mt-2 w-100 add-img" style="display: none">
-                        <div id="sbar-form-img-col">
-
-                        </div>
-                        <div class="mt-3 mb-2">
-                            <img id="sbar-form-add-more" src="/icons/add-plus-button.svg" class="d-block w-50 mt-3 mx-auto " alt="">
-                        </div>
-                    </div>
-                    <div class="w-50 mt-2" style="margin-left:auto">
-                        <button class="btn btn-submit" type="submit">Submit post</button>
-                    </div>
-                </form>
-                <div class="sbar-divider my-3"></div>
-            </div>
-            <% } %>
-
-            <!--  O RESTO DOS POSTS -->
-            <% for(var i = drop.posts_list.length-1; i > 0; i--){ %>
+                <!--  O RESTO DOS POSTS -->
+                <% for(var i = drop.posts_list.length-1; i > 0; i--){ %>
                 <% var c_post = drop.posts_list[i]; %>
-                <div class="post" data-post-id="<%=c_post._id%>" data-owner-id="<%=c_post.owner._id%>" data-drop-id="<%= drop._id %>">
+                <div class="post" data-post-id="<%=c_post._id%>" data-owner-id="<%=c_post.owner._id%>"
+                    data-drop-id="<%= drop._id %>">
                     <div class="d-flex flex-row align-items-flex-start">
                         <div style="width:70px; flex: none">
-                            <div class="sbar-profile-img w-100" style="background-image: url('<%= c_post.owner.info.profile_pic %>');" ></div>
+                            <div class="sbar-profile-img w-100"
+                                style="background-image: url('<%= c_post.owner.info.profile_pic %>');"></div>
                         </div>
-                        <div class="ml-3" >
+                        <div class="ml-3">
                             <a href="/user/<%=c_post.owner._id%>" class="username"><%= c_post.owner.username %></a>
                             <span class="txt-date" data-date-iso="<%= c_post.creation_date %>"></span>
                             <br>
                             <div class="mt-1"></div>
                             <div class="w-100 d-flex flex-row flex-wrap align-items-center">
-                                <button class="btn-star" data-like=0> <img src="/icons/star-outline.svg" width="25px" alt=""> </button> 
+                                <button class="btn-star" data-like=0> <img src="/icons/star-outline.svg" width="25px"
+                                        alt=""> </button>
                                 <span class="ml-2"><%= c_post.likes_list.length %></span>
                             </div>
                         </div>
                     </div>
                     <p class="comment mt-3"><%= c_post.comment %></p>
-                
-                    
+
+
                     <% if(c_post.replies_list.length > 0){ %>
-                        <% for(var j = 0; j < c_post.replies_list.length; j++){ %>
-                            <% var c_reply = c_post.replies_list[j]; %>
-                                <div class="reply mt-3">
-                                    <div class="sbar-divider-sub my-2"></div>
+                    <% for(var j = 0; j < c_post.replies_list.length; j++){ %>
+                    <% var c_reply = c_post.replies_list[j]; %>
+                    <div class="reply mt-3">
+                        <div class="sbar-divider-sub my-2"></div>
 
-                                    <div class="d-flex flex-row align-items-flex-start">
-                                        <div style="width:50px; flex: none">
-                                            <div class="sbar-profile-img w-100" style="background-image: url('<%= c_reply.owner.info.profile_pic %>');" ></div>
-                                        </div>
-                                        <div class="ml-2">
-                                            <a href="/user/<%=c_reply.owner._id%>" class="username h6"><%= c_reply.owner.username %></a>
-                                            <p class="comment"><%= c_reply.comment %></p>
-                                        </div>
-                                    </div>
+                        <div class="d-flex flex-row align-items-flex-start">
+                            <div style="width:50px; flex: none">
+                                <div class="sbar-profile-img w-100"
+                                    style="background-image: url('<%= c_reply.owner.info.profile_pic %>');"></div>
+                            </div>
+                            <div class="ml-2">
+                                <a href="/user/<%=c_reply.owner._id%>"
+                                    class="username h6"><%= c_reply.owner.username %></a>
+                                <p class="comment"><%= c_reply.comment %></p>
+                            </div>
+                        </div>
 
-                                </div>
+                    </div>
                     <% }} %>
 
                     <div class="d-flex flex-row align-items-center">
@@ -179,16 +192,16 @@
                     </div>
 
                 </div>
-            <% } %>
+                <% } %>
 
+            </div>
         </div>
-    </div>
 
-    <!-- IMG GRID, 3 col LARGE -->
-    <div class="img-grid px-4 pt-2 d-none d-md-block">    
-        <!-- CREATION POST -->
-        <% var c_post = drop.posts_list[0]; %>
-        <% for(var j = 0; j < c_post.images.length; j+=3){ %>
+        <!-- IMG GRID, 3 col LARGE -->
+        <div class="img-grid px-4 pt-2 d-none d-md-block">
+            <!-- CREATION POST -->
+            <% var c_post = drop.posts_list[0]; %>
+            <% for(var j = 0; j < c_post.images.length; j+=3){ %>
 
             <div class="d-flex flex-row align-items-center">
                 <div class="img-grid-divider"></div>
@@ -202,230 +215,238 @@
             <div class="row no-gutters" data-post-id="<%= c_post._id %>">
                 <div class="col-4 p-1">
                     <% if(c_post.images[j]){ %>
-                        <img class="w-100 img-grid-img" data-img-num="<%=j%>" src="<%= c_post.images[j] %>" alt="">
+                    <img class="w-100 img-grid-img" data-img-num="<%=j%>" src="<%= c_post.images[j] %>" alt="">
                     <% } %>
                 </div>
 
                 <div class="col-4 p-1">
                     <% if(c_post.images[j+1]){ %>
-                        <img class="w-100 img-grid-img" data-img-num="<%=j+1%>" src="<%= c_post.images[j+1] %>" alt="">
+                    <img class="w-100 img-grid-img" data-img-num="<%=j+1%>"
+                        src="<%= c_post.images[j+1] %>" alt="">
                     <% } %>
                 </div>
 
                 <div class="col-4 p-1">
                     <% if(c_post.images[j+2]){ %>
-                        <img class="w-100 img-grid-img" data-img-num="<%=j+2%>" src="<%= c_post.images[j+2] %>" alt="">
+                    <img class="w-100 img-grid-img" data-img-num="<%=j+2%>"
+                        src="<%= c_post.images[j+2] %>" alt="">
                     <% } %>
                 </div>
             </div>
-            
-        <% } %>
-        
 
-        <!-- RESTO DOS POSTS -->
-        <% for(var i = drop.posts_list.length - 1; i > 0  ; i--){ %>
-            <% var c_post = drop.posts_list[i]; %>
-            <% if(c_post.images.length > 0 && c_post.images[0] != ""){ %>
-                <% for(var j = 0; j < c_post.images.length; j+=3){ %>
-
-                    <div class="d-flex flex-row align-items-center">
-                        <div class="img-grid-divider"></div>
-                        <div class="mx-2">
-                            <span><%= c_post.owner.username %></span>
-                            <span class="txt-date" data-date-iso="<%= c_post.creation_date %>"></span>
-                        </div>
-                        <div class="img-grid-divider"></div>
-                    </div>
-
-                    <div class="row no-gutters" data-post-id="<%= c_post._id %>">
-                        <div class="col-4 p-1">
-                            <% if(c_post.images[j]){ %>
-                                <img class="w-100 img-grid-img" data-img-num="<%=j%>" src="<%= c_post.images[j] %>" alt="">
-                            <% } %>
-                        </div>
-
-                        <div class="col-4 p-1">
-                            <% if(c_post.images[j+1]){ %>
-                                <img class="w-100 img-grid-img" data-img-num="<%=j+1%>" src="<%= c_post.images[j+1] %>" alt="">
-                            <% } %>
-                        </div>
-
-                        <div class="col-4 p-1">
-                            <% if(c_post.images[j+2]){ %>
-                                <img class="w-100 img-grid-img" data-img-num="<%=j+2%>" src="<%= c_post.images[j+2] %>" alt="">
-                            <% } %>
-                        </div>
-                    </div>
-
-                <% } %>
-
-                
             <% } %>
 
-        <% } %>
-    </div>
 
-    <!-- IMG GRID, 2 col SMALL -->
-    <div class="img-grid px-4 pt-2 d-md-none">    
+            <!-- RESTO DOS POSTS -->
+            <% for(var i = drop.posts_list.length - 1; i > 0  ; i--){ %>
+            <% var c_post = drop.posts_list[i]; %>
+            <% if(c_post.images.length > 0 && c_post.images[0] != ""){ %>
+            <% for(var j = 0; j < c_post.images.length; j+=3){ %>
+
+            <div class="d-flex flex-row align-items-center">
+                <div class="img-grid-divider"></div>
+                <div class="mx-2">
+                    <span><%= c_post.owner.username %></span>
+                    <span class="txt-date" data-date-iso="<%= c_post.creation_date %>"></span>
+                </div>
+                <div class="img-grid-divider"></div>
+            </div>
+
+            <div class="row no-gutters" data-post-id="<%= c_post._id %>">
+                <div class="col-4 p-1">
+                    <% if(c_post.images[j]){ %>
+                    <img class="w-100 img-grid-img" data-img-num="<%=j%>" src="<%= c_post.images[j] %>"
+                        alt="">
+                    <% } %>
+                </div>
+
+                <div class="col-4 p-1">
+                    <% if(c_post.images[j+1]){ %>
+                    <img class="w-100 img-grid-img" data-img-num="<%=j+1%>"
+                        src="<%= c_post.images[j+1] %>" alt="">
+                    <% } %>
+                </div>
+
+                <div class="col-4 p-1">
+                    <% if(c_post.images[j+2]){ %>
+                    <img class="w-100 img-grid-img" data-img-num="<%=j+2%>"
+                        src="<%= c_post.images[j+2] %>" alt="">
+                    <% } %>
+                </div>
+            </div>
+
+            <% } %>
+
+
+            <% } %>
+
+            <% } %>
+        </div>
+
+        <!-- IMG GRID, 2 col SMALL -->
+        <div class="img-grid px-4 pt-2 d-md-none">
             <!-- CREATION POST -->
             <% var c_post = drop.posts_list[0]; %>
             <% for(var j = 0; j < c_post.images.length; j+=2){ %>
-    
-                <div class="d-flex flex-row align-items-center">
-                    <div class="img-grid-divider"></div>
-                    <div class="mx-2">
-                        <span><%= c_post.owner.username %></span>
-                        <span class="txt-date" data-date-iso="<%= c_post.creation_date %>"></span>
-                    </div>
-                    <div class="img-grid-divider"></div>
+
+            <div class="d-flex flex-row align-items-center">
+                <div class="img-grid-divider"></div>
+                <div class="mx-2">
+                    <span><%= c_post.owner.username %></span>
+                    <span class="txt-date" data-date-iso="<%= c_post.creation_date %>"></span>
                 </div>
-    
-                <div class="row no-gutters" data-post-id="<%= c_post._id %>">
-                    <div class="col-6 p-1">
-                        <% if(c_post.images[j]){ %>
-                            <img class="w-100 img-grid-img" data-img-num="<%=j%>" src="<%= c_post.images[j] %>" alt="">
-                        <% } %>
-                    </div>
-    
-                    <div class="col-6 p-1">
-                        <% if(c_post.images[j+1]){ %>
-                            <img class="w-100 img-grid-img" data-img-num="<%=j+1%>" src="<%= c_post.images[j+1] %>" alt="">
-                        <% } %>
-                    </div>
+                <div class="img-grid-divider"></div>
+            </div>
+
+            <div class="row no-gutters" data-post-id="<%= c_post._id %>">
+                <div class="col-6 p-1">
+                    <% if(c_post.images[j]){ %>
+                    <img class="w-100 img-grid-img" data-img-num="<%=j%>" src="<%= c_post.images[j] %>" alt="">
+                    <% } %>
                 </div>
-                
+
+                <div class="col-6 p-1">
+                    <% if(c_post.images[j+1]){ %>
+                    <img class="w-100 img-grid-img" data-img-num="<%=j+1%>" src="<%= c_post.images[j+1] %>" alt="">
+                    <% } %>
+                </div>
+            </div>
+
             <% } %>
-            
-    
+
+
             <!-- RESTO DOS POSTS -->
             <% for(var i = drop.posts_list.length - 1; i > 0  ; i--){ %>
-                <% var c_post = drop.posts_list[i]; %>
-                <% if(c_post.images.length > 0 && c_post.images[0] != ""){ %>
-                    <% for(var j = 0; j < c_post.images.length; j+=3){ %>
-    
-                        <div class="d-flex flex-row align-items-center">
-                            <div class="img-grid-divider"></div>
-                            <div class="mx-2">
-                                <span><%= c_post.owner.username %></span>
-                                <span class="txt-date" data-date-iso="<%= c_post.creation_date %>"></span>
-                            </div>
-                            <div class="img-grid-divider"></div>
-                        </div>
-    
-                        <div class="row no-gutters" data-post-id="<%= c_post._id %>">
-                            <div class="col-6 p-1">
-                                <% if(c_post.images[j]){ %>
-                                    <img class="w-100 img-grid-img" data-img-num="<%=j%>" src="<%= c_post.images[j] %>" alt="">
-                                <% } %>
-                            </div>
-    
-                            <div class="col-6 p-1">
-                                <% if(c_post.images[j+1]){ %>
-                                    <img class="w-100 img-grid-img" data-img-num="<%=j+1%>" src="<%= c_post.images[j+1] %>" alt="">
-                                <% } %>
-                            </div>
-                        </div>
-    
+            <% var c_post = drop.posts_list[i]; %>
+            <% if(c_post.images.length > 0 && c_post.images[0] != ""){ %>
+            <% for(var j = 0; j < c_post.images.length; j+=3){ %>
+
+            <div class="d-flex flex-row align-items-center">
+                <div class="img-grid-divider"></div>
+                <div class="mx-2">
+                    <span><%= c_post.owner.username %></span>
+                    <span class="txt-date" data-date-iso="<%= c_post.creation_date %>"></span>
+                </div>
+                <div class="img-grid-divider"></div>
+            </div>
+
+            <div class="row no-gutters" data-post-id="<%= c_post._id %>">
+                <div class="col-6 p-1">
+                    <% if(c_post.images[j]){ %>
+                    <img class="w-100 img-grid-img" data-img-num="<%=j%>" src="<%= c_post.images[j] %>" alt="">
                     <% } %>
-    
-                    
-                <% } %>
-    
+                </div>
+
+                <div class="col-6 p-1">
+                    <% if(c_post.images[j+1]){ %>
+                    <img class="w-100 img-grid-img" data-img-num="<%=j+1%>" src="<%= c_post.images[j+1] %>" alt="">
+                    <% } %>
+                </div>
+            </div>
+
+            <% } %>
+
+
+            <% } %>
+
             <% } %>
         </div>
-</div>
+    </div>
 
 
-<!-- VIEW LARGER MODAL -->
-<div class="modal fade post" id="view-larger-modal" tabindex="-1" role="dialog" data-post-id="">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-                <div class="d-flex flex-row align-items-flex-start float-left">
-                    <div style="width: 100px; flex: none">
-                        <div class="sbar-profile-img w-100" style="background-image: url('');" ></div>
-                    </div>
-                    <div class="ml-5">
-                        <div>
-                            <a href="/user/" class="username h3"></a>
-                            <span class="txt-date"></span> 
+    <!-- VIEW LARGER MODAL -->
+    <div class="modal fade post" id="view-larger-modal" tabindex="-1" role="dialog" data-post-id="">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="d-flex flex-row align-items-flex-start float-left">
+                        <div style="width: 100px; flex: none">
+                            <div class="sbar-profile-img w-100" style="background-image: url('');"></div>
                         </div>
-                        <div class="mt-3 w-100 d-flex flex-row flex-wrap align-items-center ">
-                            <button class="btn-star" data-like=0> <img src="/icons/star-outline.svg" width="30px" alt=""> </button> 
-                            <span class="ml-2 h4 likes-count"><%= drop.posts_list[0].likes_list.length %></span>
+                        <div class="ml-5">
+                            <div>
+                                <a href="/user/" class="username h3"></a>
+                                <span class="txt-date"></span>
+                            </div>
+                            <div class="mt-3 w-100 d-flex flex-row flex-wrap align-items-center ">
+                                <button class="btn-star" data-like=0> <img src="/icons/star-outline.svg" width="30px"
+                                        alt=""> </button>
+                                <span class="ml-2 h4 likes-count"><%= drop.posts_list[0].likes_list.length %></span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="modal-body">
+                <div class="w-100">
+                    <img src="" class="modal-post-img" width="100%" alt="">
+                    <p class="mt-3 modal-comment">.</p>
+                </div>
+            </div>
+
         </div>
+    </div>
+    </div>
 
-      <div class="modal-body">
-          <div class="w-100">          
-            <img src="" class="modal-post-img" width="100%" alt="">
-            <p class="mt-3 modal-comment">.</p>
+    <!-- REPLY FORM - COPY PASTE -->
+    <% if(user){ %>
+    <form action="#" method="POST" class="add-reply mt-2 d-none" id="reply-form">
+        <div class="d-flex flex-row align-items-flex-start justify-content-between">
+
+            <div style="width:60px">
+                <div class="sbar-profile-img w-100" style="background-image: url('<%= user.info.profile_pic %>');">
+                </div>
+            </div>
+
+            <textarea class="comment ml-3" name="comment" id=""></textarea>
         </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- REPLY FORM - COPY PASTE -->
-<% if(user){ %>
-<form action="#" method="POST" class="add-reply mt-2 d-none" id="reply-form">
-    <div class="d-flex flex-row align-items-flex-start justify-content-between">
-        
-        <div style="width:60px">
-            <div class="sbar-profile-img w-100" style="background-image: url('<%= user.info.profile_pic %>');" ></div>
+        <div class="w-50 mt-2" style="margin-left:auto">
+            <button class="btn btn-submit" type="submit">Submit reply</button>
         </div>
-        
-        <textarea class="comment ml-3" name="comment" id=""></textarea>
-    </div>
-    <div class="w-50 mt-2" style="margin-left:auto">
-        <button class="btn btn-submit" type="submit">Submit reply</button>
-    </div>
-    <div class="sbar-divider my-3"></div>
-</form>
-<% } %>
+        <div class="sbar-divider my-3"></div>
+    </form>
+    <% } %>
 
-<!-- Flash messages -->
-<div class="flash-msg w-100" id="flash-success" style="display: none">
-    <div class="alert alert-success">
-        <span class="text-secondary work-sans">success</span>
+    <!-- Flash messages -->
+    <div class="flash-msg w-100" id="flash-success" style="display: none">
+        <div class="alert alert-success">
+            <span class="text-secondary work-sans">success</span>
+        </div>
     </div>
-</div>
-<div class="flash-msg w-100" id="flash-failure" style="display: none">
-    <div class="alert alert-danger">
-        <span class="text-secondary work-sans">fail</span>
+    <div class="flash-msg w-100" id="flash-failure" style="display: none">
+        <div class="alert alert-danger">
+            <span class="text-secondary work-sans">fail</span>
+        </div>
     </div>
-</div> 
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<!-- Moment time -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.js"></script>
-<!-- Autosize -->
-<script src='/dist/js/autosize.js'></script>
-<script>
-    autosize(document.querySelectorAll('textarea'));
-</script>
-<!-- Own -->
-<script src="/dist/js/drop_page.js" ></script>
-<!-- FLASH MESSAGES -->
-<% if(messageFailure && messageFailure.length > 0){ %>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- Moment time -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.js"></script>
+    <!-- Autosize -->
+    <script src='/dist/js/autosize.js'></script>
+    <script>
+        autosize(document.querySelectorAll('textarea'));
+    </script>
+    <!-- Own -->
+    <script src="/dist/js/drop_page.js"></script>
+    <!-- FLASH MESSAGES -->
+    <% if(messageFailure && messageFailure.length > 0){ %>
     <% console.log("Message: ",messageFailure) %>
     <script>
-        flash("failure","<%= messageFailure %>")
+        flash("failure", "<%= messageFailure %>")
     </script>
-<% } %>
-<% if(messageSuccess && messageSuccess.length > 0){ %>
+    <% } %>
+    <% if(messageSuccess && messageSuccess.length > 0){ %>
     <script>
-        flash("success","<%= messageSuccess %>")
+        flash("success", "<%= messageSuccess %>")
     </script>
-<% } %>
+    <% } %>
 
 
 </body>
+
 </html>

@@ -66,7 +66,7 @@
                     <button class='btn btn-edit float-right mt-5' type="button" data-input="input-about"><i class="fas fa-edit fa-lg"></i></button>
 
                     <h5 class="mt-5">About me</h5>
-                    <textarea name="about" class="" id="input-about" readonly><%= user.info.about %></textarea>
+                    <textarea name="about" class="" id="input-about"><%= user.info.about %></textarea>
 
                     <!-- Hidden input - new profile pic -->
                     <input type="hidden" name="profile_pic" id="input-profile-pic" value="<%= user.info.profile_pic %>" >  

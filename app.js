@@ -11,6 +11,7 @@ mongoose.connect("mongodb://localhost/SD1", err => {
     if (err) { console.error("Cannot connect to DB: ", err); process.exit() }
 })
 
+require('./controllers/storage')
 
 var app = express();
 
@@ -20,9 +21,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); // for parsing application/json
 
 app.use(expressSession({
-    secret: "abcdef", // String a enviar num pedido 
+    secret: "hiohiihohyihiolsjoidiopiu8yiok", // String a enviar num pedido 
     resave: false, // só guarda as seessions em  é feito o login,
-    saveUninitialized: false // Não criar cookies a quem n fizer login
+    saveUninitialized: false, // Não criar cookies a quem n fizer login
 }));
 
 // Companion
@@ -46,7 +47,7 @@ app.use(companion.app(options))
 app.use(passport.initialize()); // Ligar express e passport
 app.use(passport.session());
 app.use(flash())
-require("./config/passport.js")(passport)
+require("./controllers/passport.js")(passport)
 
 // Setup flash messages
 app.use(function (req, res, next) {
