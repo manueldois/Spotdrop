@@ -4,14 +4,20 @@ var express = require("express"),
     bodyParser = require("body-parser"),
     methodOverride = require("method-override"),
     passport = require("passport"),
-    flash = require("connect-flash"),
-    companion = require("@uppy/companion")
+    flash = require("connect-flash");
 
-mongoose.connect("mongodb://localhost/SD1", err => {
-    if (err) { console.error("Cannot connect to DB: ", err); process.exit() }
-})
+// Load APP_SECRET from .env
+require('dotenv').config()
+// Decrypt keys
+require('./config/decrypt_keys').decryptAll(process.env['APP_SECRET'])
 
-require('./controllers/storage')
+
+const MLABS_KEYS = require('./config/keys_plaintext/mlabs')
+mongoose.connect(process.env['NODE_ENV'] === 'development' ? "mongodb://localhost/SD1" :
+    `mongodb://${MLABS_KEYS.dbUser}:${MLABS_KEYS.dbPassword}@ds021884.mlab.com:21884/spotdrop`, err => {
+        if (err) { console.error("Cannot connect to DB: ", err); process.exit() }
+    })
+
 
 var app = express();
 
@@ -26,22 +32,8 @@ app.use(expressSession({
     saveUninitialized: false, // Não criar cookies a quem n fizer login
 }));
 
-// Companion
-const options = {
-    providerOptions: {
-        google: {
-            key: 'GOOGLE_KEY',
-            secret: 'GOOGLE_SECRET'
-        }
-    },
-    server: {
-        host: 'localhost:3000',
-        protocol: 'http',
-    },
-    filePath: '/uploads'
-}
 
-app.use(companion.app(options))
+app.use(require('./controllers/companion').companionApp)
 
 // Passport
 app.use(passport.initialize()); // Ligar express e passport

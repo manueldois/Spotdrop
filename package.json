@@ -5,7 +5,11 @@
   "main": "app.js",
   "scripts": {
     "start": "node app",
+    "nodemon": "nodemon --inspect app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "10.x"
   },
   "author": "manuel_maldonado",
   "license": "ISC",
@@ -18,10 +22,12 @@
     "connect-flash": "^0.1.1",
     "cors": "^2.8.5",
     "css-loader": "^3.2.0",
+    "dotenv": "^8.1.0",
     "ejs": "^2.5.7",
     "escape-string-regexp": "^1.0.5",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
+    "jsonwebtoken": "^8.5.1",
     "method-override": "^2.3.10",
     "mini-css-extract-plugin": "^0.8.0",
     "moment": "^2.21.0",

@@ -9,7 +9,7 @@ const { Storage } = require('@google-cloud/storage'),
 
 const GCStorage = new Storage({
     projectId: 'spotdrop',
-    keyFilename: './config/keys/google-service-account.json'
+    keyFilename: './config/keys_plaintext/google-service-account.json'
 })
 const SpotdropBucket = GCStorage.bucket('spotdrop-media')
 
