@@ -188,7 +188,6 @@ var p_drops_ajax = getDrops()
 p_drops_ajax.then((drops) => {
     all_drops = drops;
     addAllMarkers(all_drops);
-    addHeatmapData(all_drops);
 }).catch((err) => console.error(err))
 function getDrops() {
     return new Promise((resolve, reject) => {
@@ -589,11 +588,11 @@ function setSBar(sbarID) {
     return false;
 }
 $(".sbar-profile-img").click(function () {
-    var user_id =  USER._id
-    var url = "/user/" + user_id;
-    onUnload()
-    console.log('url: ',url)
-    $(location).attr('href', url)
+    if(USER){
+        var url = "/myprofile"
+        onUnload()
+        $(location).attr('href', url)
+    }
 })
 $(".sbar-comment").click(function () {
     var h = $(this).prop('scrollHeight');
@@ -630,7 +629,7 @@ var ALL_UPLOADS = []
 // Uppy
 const uppy = Uppy.Core()
     .use(Uppy.Dashboard, { trigger: '.open-uppy' })
-    .use(Uppy.XHRUpload, { endpoint: 'http://localhost:3000/api/drop/upload-photo', fieldName: 'photo' })
+    .use(Uppy.XHRUpload, { endpoint: '/api/drop/upload-photo', fieldName: 'photo' })
     .on('complete', (result) => {
         if (result.successful.length > 0) {
             var url_list = result.successful.map(upload_event => {

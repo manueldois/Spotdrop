@@ -31,15 +31,18 @@
     </div>
 </nav>
 
+<!-- MAIN -->
 <div class="main1">
         <!-- USER INFO -->
         <div class="w-100">
 
+            <!-- EDIT PROFILE FORM -->
                 <form action="/myprofile/?_method=PUT" class="w-100" method="POST">
 
                     <div class="d-flex flex-row align-items-flex-start">
                         <div style="width: 150px; flex-shrink: 0">
                             <div class="profile-img w-100" id="self-profile-pic" style="background-image: url('<%= user.info.profile_pic %>');" ></div>
+                            <button type="button" class="btn btn-primary mt-3 mx-auto open-uppy">Upload profile picture</button>
                         </div>
 
                         <div class="d-flex flex-column align-items-flex-start ml-5 ">
@@ -152,31 +155,6 @@
         <!-- FIM DE ULTIMA ATIVIDADE -->
 </div>
 
-
-
-<!-- EDIT PROFILE PIC MODAL -->
-<div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Edit profile pic</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <input type="text" class="form-control" id="input-profile-pic-modal" placeholder="url..">
-            <img id="profile-pic-preview" class="w-100 mt-1" src="" alt="">
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary">Refresh</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" onclick="modalCopyUrl()" data-dismiss="modal">Ok</button>
-        </div>
-        </div>
-    </div>
-</div>
-
 <!-- Flash messages -->
 <div class="flash-msg w-100" id="flash-success" style="display: none">
     <div class="alert alert-success">
@@ -188,7 +166,6 @@
         <span class="text-secondary work-sans">fail</span>
     </div>
 </div> 
-
 
 
 <!-- jQuery library -->

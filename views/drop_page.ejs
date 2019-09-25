@@ -26,25 +26,37 @@
     <div id="user-data" data-user=""></div>
     <% } %>
 
+    <!-- NAV -->
+    <nav class="sbar-nav pl-1 d-flex flex-row align-items-center justify-content-between">
+        <a href="/map" class="sbar-nav-link">
+            <img src="/icons/chevron-left.svg" width="10px" class="mt-1 ml-1" alt="">
+            <span class="h6">Back to map</span>
+        </a>
+        <% if(!isFollowing){ %>
+        <button class="btn" id="btn-unfollow" data-id="<%= drop._id %>" style="display: none">Unfollow</button>
+        <button class="btn" id="btn-follow" data-id="<%= drop._id %>">Follow</button>
+        <% }else{ %>
+        <button class="btn" id="btn-unfollow" data-id="<%= drop._id %>">Unfollow</button>
+        <button class="btn" id="btn-follow" data-id="<%= drop._id %>" style="display: none">Follow</button>
+        <% } %>
+    </nav>
 
+    <!-- TABS -->
+    <div class="tabs">
+        <label>
+            <input class="d-none" type="radio" name="tabs" value="comments" id="">
+            <span>Comments</span> 
+        </label>
+        <label>
+            <input class="d-none" checked type="radio" name="tabs" value="images" id="">
+            <span>Images</span> 
+        </label>
+    </div>
 
     <!-- MAIN -->
-    <div class="w-100 d-flex flex-row">
+    <main>
         <!-- SIDEBAR -->
-        <div class="sidebar">
-            <div class="sbar-nav pl-1 d-flex flex-row align-items-center justify-content-between">
-                <a href="/map" class="sbar-nav-link">
-                    <img src="/icons/chevron-left.svg" width="10px" class="mt-1 ml-1" alt="">
-                    <span class="h6">Back to map</span>
-                </a>
-                <% if(!isFollowing){ %>
-                <button class="btn" id="btn-unfollow" data-id="<%= drop._id %>" style="display: none">Unfollow</button>
-                <button class="btn" id="btn-follow" data-id="<%= drop._id %>">Follow</button>
-                <% }else{ %>
-                <button class="btn" id="btn-unfollow" data-id="<%= drop._id %>">Unfollow</button>
-                <button class="btn" id="btn-follow" data-id="<%= drop._id %>" style="display: none">Follow</button>
-                <% } %>
-            </div>
+        <div class="sidebar" id="sidebar">
             <!-- POSTS -->
             <div class="w-100 mt-2 p-3">
 
@@ -197,11 +209,10 @@
             </div>
         </div>
 
-        <!-- IMG GRID, 3 col LARGE -->
-        <div class="img-grid px-4 pt-2 d-none d-md-block">
+        <!-- IMG GRID -->
+        <div class="img-grid px-4 pt-2">
             <!-- CREATION POST -->
             <% var c_post = drop.posts_list[0]; %>
-            <% for(var j = 0; j < c_post.images.length; j+=3){ %>
 
             <div class="d-flex flex-row align-items-center">
                 <div class="img-grid-divider"></div>
@@ -212,29 +223,14 @@
                 <div class="img-grid-divider"></div>
             </div>
 
-            <div class="row no-gutters" data-post-id="<%= c_post._id %>">
-                <div class="col-4 p-1">
-                    <% if(c_post.images[j]){ %>
-                    <img class="w-100 img-grid-img" data-img-num="<%=j%>" src="<%= c_post.images[j] %>" alt="">
-                    <% } %>
-                </div>
-
-                <div class="col-4 p-1">
-                    <% if(c_post.images[j+1]){ %>
-                    <img class="w-100 img-grid-img" data-img-num="<%=j+1%>"
-                        src="<%= c_post.images[j+1] %>" alt="">
-                    <% } %>
-                </div>
-
-                <div class="col-4 p-1">
-                    <% if(c_post.images[j+2]){ %>
-                    <img class="w-100 img-grid-img" data-img-num="<%=j+2%>"
-                        src="<%= c_post.images[j+2] %>" alt="">
-                    <% } %>
-                </div>
+            <div class="post-images" data-post-id="<%= c_post._id %>">
+                <% for(var j = 0; j < c_post.images.length; j++){ %>
+                <% if(c_post.images[j]){ %>
+                <img class="w-100 img-grid-img" data-img-num="<%=j%>" src="<%= c_post.images[j] %>" alt="">
+                <% } %>
+                <% } %>
             </div>
 
-            <% } %>
 
 
             <!-- RESTO DOS POSTS -->
@@ -255,22 +251,19 @@
             <div class="row no-gutters" data-post-id="<%= c_post._id %>">
                 <div class="col-4 p-1">
                     <% if(c_post.images[j]){ %>
-                    <img class="w-100 img-grid-img" data-img-num="<%=j%>" src="<%= c_post.images[j] %>"
-                        alt="">
+                    <img class="w-100 img-grid-img" data-img-num="<%=j%>" src="<%= c_post.images[j] %>" alt="">
                     <% } %>
                 </div>
 
                 <div class="col-4 p-1">
                     <% if(c_post.images[j+1]){ %>
-                    <img class="w-100 img-grid-img" data-img-num="<%=j+1%>"
-                        src="<%= c_post.images[j+1] %>" alt="">
+                    <img class="w-100 img-grid-img" data-img-num="<%=j+1%>" src="<%= c_post.images[j+1] %>" alt="">
                     <% } %>
                 </div>
 
                 <div class="col-4 p-1">
                     <% if(c_post.images[j+2]){ %>
-                    <img class="w-100 img-grid-img" data-img-num="<%=j+2%>"
-                        src="<%= c_post.images[j+2] %>" alt="">
+                    <img class="w-100 img-grid-img" data-img-num="<%=j+2%>" src="<%= c_post.images[j+2] %>" alt="">
                     <% } %>
                 </div>
             </div>
@@ -282,76 +275,7 @@
 
             <% } %>
         </div>
-
-        <!-- IMG GRID, 2 col SMALL -->
-        <div class="img-grid px-4 pt-2 d-md-none">
-            <!-- CREATION POST -->
-            <% var c_post = drop.posts_list[0]; %>
-            <% for(var j = 0; j < c_post.images.length; j+=2){ %>
-
-            <div class="d-flex flex-row align-items-center">
-                <div class="img-grid-divider"></div>
-                <div class="mx-2">
-                    <span><%= c_post.owner.username %></span>
-                    <span class="txt-date" data-date-iso="<%= c_post.creation_date %>"></span>
-                </div>
-                <div class="img-grid-divider"></div>
-            </div>
-
-            <div class="row no-gutters" data-post-id="<%= c_post._id %>">
-                <div class="col-6 p-1">
-                    <% if(c_post.images[j]){ %>
-                    <img class="w-100 img-grid-img" data-img-num="<%=j%>" src="<%= c_post.images[j] %>" alt="">
-                    <% } %>
-                </div>
-
-                <div class="col-6 p-1">
-                    <% if(c_post.images[j+1]){ %>
-                    <img class="w-100 img-grid-img" data-img-num="<%=j+1%>" src="<%= c_post.images[j+1] %>" alt="">
-                    <% } %>
-                </div>
-            </div>
-
-            <% } %>
-
-
-            <!-- RESTO DOS POSTS -->
-            <% for(var i = drop.posts_list.length - 1; i > 0  ; i--){ %>
-            <% var c_post = drop.posts_list[i]; %>
-            <% if(c_post.images.length > 0 && c_post.images[0] != ""){ %>
-            <% for(var j = 0; j < c_post.images.length; j+=3){ %>
-
-            <div class="d-flex flex-row align-items-center">
-                <div class="img-grid-divider"></div>
-                <div class="mx-2">
-                    <span><%= c_post.owner.username %></span>
-                    <span class="txt-date" data-date-iso="<%= c_post.creation_date %>"></span>
-                </div>
-                <div class="img-grid-divider"></div>
-            </div>
-
-            <div class="row no-gutters" data-post-id="<%= c_post._id %>">
-                <div class="col-6 p-1">
-                    <% if(c_post.images[j]){ %>
-                    <img class="w-100 img-grid-img" data-img-num="<%=j%>" src="<%= c_post.images[j] %>" alt="">
-                    <% } %>
-                </div>
-
-                <div class="col-6 p-1">
-                    <% if(c_post.images[j+1]){ %>
-                    <img class="w-100 img-grid-img" data-img-num="<%=j+1%>" src="<%= c_post.images[j+1] %>" alt="">
-                    <% } %>
-                </div>
-            </div>
-
-            <% } %>
-
-
-            <% } %>
-
-            <% } %>
-        </div>
-    </div>
+    </main>
 
 
     <!-- VIEW LARGER MODAL -->

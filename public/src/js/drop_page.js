@@ -33,6 +33,21 @@ function checkQuery() {
 
 }
 
+
+// Tabs logic
+$("input[name=tabs]").on('change', (e) => {
+    const value = e.target.value
+    const sidebar_el = $('#sidebar')
+    if(value === 'comments'){
+        sidebar_el.css('transform', "translateX(0)")
+    }
+
+    if(value === 'images'){
+        sidebar_el.css('transform', "translateX(-100%)")
+    }
+})
+
+
 // Show full comment on click
 $(".comment").click(function () {
     var h = $(this).prop('scrollHeight');
@@ -248,7 +263,7 @@ function postUnlike(post_id) {
 var ALL_UPLOADS = []
 const uppy = Uppy.Core()
     .use(Uppy.Dashboard, { trigger: '.btn-add-img' })
-    .use(Uppy.XHRUpload, { endpoint: 'http://localhost:3000/api/drop/upload-photo', fieldName: 'photo' })
+    .use(Uppy.XHRUpload, { endpoint: '/api/drop/upload-photo', fieldName: 'photo' })
     .on('complete', (result) => {
         if (result.successful.length > 0) {
             var url_list = result.successful.map(upload_event => {

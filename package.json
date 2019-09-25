@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app",
+    "start": "cd public/ && npx webpack && cd .. && node app",
     "nodemon": "nodemon --inspect app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
