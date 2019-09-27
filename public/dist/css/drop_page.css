@@ -1,8 +1,6 @@
 nav {
   z-index: 3;
   top: 0; }
-  nav .navbar-collapse {
-    background-color: #333333; }
 
 div.tabs {
   width: 100vw;
@@ -84,16 +82,6 @@ a:active {
   background-color: #a8ffff;
   border: 0; }
 
-/* @media screen and (min-width: 992px) {
-    .sidebar{
-        flex-basis: 500px;
-    }
-}
-@media screen and (max-width: 992px) {
-    .sidebar{
-        flex-basis: 300px;
-    }
-} */
 textarea {
   border: none;
   padding: 10px; }
@@ -192,7 +180,7 @@ textarea {
 body {
   height: 100vh;
   background: linear-gradient(to bottom right, #0071bd, #006591);
-  /* background: linear-gradient(to bottom right,rgb(0, 85, 141), rgb(0, 101, 145)); */ }
+  overflow-x: hidden; }
 
 /* Flash message */
 .flash-msg {

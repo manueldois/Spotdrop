@@ -1,10 +1,6 @@
 nav {
   z-index: 3;
   top: 0;
-  
-  .navbar-collapse {
-    background-color: #333333;
-  }
 }
 
 // Tabs
@@ -96,16 +92,6 @@ a:active {
   background-color: rgb(168, 255, 255);
   border: 0;
 }
-/* @media screen and (min-width: 992px) {
-    .sidebar{
-        flex-basis: 500px;
-    }
-}
-@media screen and (max-width: 992px) {
-    .sidebar{
-        flex-basis: 300px;
-    }
-} */
 
 textarea {
   border: none;
@@ -211,7 +197,7 @@ textarea {
 body {
   height: 100vh;
   background: linear-gradient(to bottom right, rgb(0, 113, 189), rgb(0, 101, 145));
-  /* background: linear-gradient(to bottom right,rgb(0, 85, 141), rgb(0, 101, 145)); */
+  overflow-x: hidden;
 }
 
 /* Flash message */

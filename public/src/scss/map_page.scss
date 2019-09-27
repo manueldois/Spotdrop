@@ -15,12 +15,7 @@ body {
 .navbar {
   padding: 0.15rem 0.4rem 0.15rem 0.4rem;
   box-shadow: 0 0 8px #666666;
-  height: 55px;
   z-index: 3;
-
-  .navbar-collapse {
-    background-color: darken(#00a99d,10%);
-  }
 }
 .nav-profile-img {
   width: 40px;
