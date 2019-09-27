@@ -1,235 +1,236 @@
-
-body{
-    height: 100vh;
-    background-color: black;
-    overflow-x: hidden;
+body {
+  height: 100vh;
+  background-color: black;
+  overflow-x: hidden;
 }
 
 /* Colors */
-.bg-green{
-    background-color: rgb(24, 206, 0)
+.bg-green {
+  background-color: rgb(24, 206, 0);
 }
 
 /* Divs */
-.main1{
-    height: 88vh;
+.main1 {
+  height: 88vh;
 }
-#div_opentutorial{
-    background-color: rgb(0, 161, 182);;
+#div_opentutorial {
+  background-color: rgb(0, 161, 182);
 }
-#div_tutorial{
-    background-color: rgb(0, 92, 104);
+#div_tutorial {
+  background-color: rgb(0, 92, 104);
 }
 /* .tut-section{
     flex-wrap: wrap
 } */
-  
 
 /* Navbar */
-.navbar{
-    background: rgba(0, 0, 0, 0.6);
-    height: 6vh;
+.navbar {
+  background: rgba(0, 0, 0, 0.6);
+  height: 6vh;
+
+  .navbar-collapse {
+    background-color: rgba(0, 0, 0, 0.7)
+  }
 }
-.nav-link{
-    color: white;
-    font-weight: bold;
-    font-size: 1.4em;
+.nav-link {
+  color: white;
+  font-weight: bold;
+  font-size: 1.4em;
 }
-.nav-link:hover{
-    color: tomato;
+.nav-link:hover {
+  color: tomato;
 }
-.navbar-brand{
-    height: 100%;
+.navbar-brand {
+  height: 100%;
 }
-#img-logo-nav{
-    height: 100%;
+#img-logo-nav {
+  height: 100%;
 }
-.nav-item-right{
-    height: 100%;
-    background: none !important;
-    color: white;
-    border: 2px solid white;
-    margin-left: 10px;
+.nav-item-right {
+  height: 100%;
+  background: none !important;
+  color: white;
+  border: 2px solid white;
+  margin-left: 10px;
 }
-.nav-item-right:hover *{
-    color: greenyellow
+.nav-item-right:hover * {
+  color: greenyellow;
 }
-.nav-item-right:hover{
-    color: greenyellow
+.nav-item-right:hover {
+  color: greenyellow;
 }
 
 /* Text */
-*{
-    font-family: 'Ubuntu', sans-serif;
-    color: white;
+* {
+  font-family: "Ubuntu", sans-serif;
+  color: white;
 }
-.raleway{
-    font-family: 'Raleway', sans-serif;
-    font-weight: bold
+.raleway {
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
 }
 
 /* Search */
-.input-group-src{
-    border: 5px solid black;
-    border-radius: 10px;
+.input-group-src {
+  border: 5px solid black;
+  border-radius: 10px;
 }
-.input-group-src span{
-    background-color: #333333;
-    color: white;
-    border: none;
+.input-group-src span {
+  background-color: #333333;
+  color: white;
+  border: none;
 }
-.input-group-src input{
-    border: none
+.input-group-src input {
+  border: none;
 }
 /* Images */
-#img-logo{
-    width: 65%;
+#img-logo {
+  width: 65%;
 }
 
 /* Buttons */
-#btn-main{
-    margin-left: auto;
-    border: solid 5px;
-    color: white;
-    font-size: 1.2em;
-    border:none;
-    background: linear-gradient(rgb(0, 107, 194),rgb(0, 80, 145));
-    display:table;
-    min-width: 30%;
+#btn-main {
+  margin-left: auto;
+  border: solid 5px;
+  color: white;
+  font-size: 1.2em;
+  border: none;
+  background: linear-gradient(rgb(0, 107, 194), rgb(0, 80, 145));
+  display: table;
+  min-width: 30%;
 }
-#btn-main span{
-    display: table-cell;
-    vertical-align: middle;
+#btn-main span {
+  display: table-cell;
+  vertical-align: middle;
 }
-#btn-main:hover{
-    background-color: rgb(57, 166, 255);
+#btn-main:hover {
+  background-color: rgb(57, 166, 255);
 }
-#btn-goto-tutorial{
-    background: none;
-    border: none;
-    font-size: 1.3em;
+#btn-goto-tutorial {
+  background: none;
+  border: none;
+  font-size: 1.3em;
 }
-#btn-goto-tutorial:hover{
-    color: black;
+#btn-goto-tutorial:hover {
+  color: black;
 }
 /* Background */
 #cf2 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height:100vh;
-    width:100vw;
-    margin:0;
-    z-index: -1000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  z-index: -1000;
 }
 #cf2 .img-holder {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    top:0;
-    left:0;
-    background-color: rgba(0, 0, 0,0.3);
-    background-blend-mode: multiply;
-    background-size: cover;
-    background-position: center;
-    
-    -webkit-transition: opacity 1s ease-in-out;
-    -moz-transition: opacity 1s ease-in-out;
-    -o-transition: opacity 1s ease-in-out;
-    transition: opacity 1s ease-in-out;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  background-blend-mode: multiply;
+  background-size: cover;
+  background-position: center;
+
+  -webkit-transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -o-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
 }
 
 #cf2 .transparent {
-    opacity:0;  
+  opacity: 0;
 }
 #cf_onclick {
-    position: absolute;
-    top: 10vh;
-    left: 10vw;
-    cursor:pointer;
+  position: absolute;
+  top: 10vh;
+  left: 10vw;
+  cursor: pointer;
 }
 
-hr{
-    border: 0.5px solid whitesmoke;
+hr {
+  border: 0.5px solid whitesmoke;
 }
-hr.light{
-    border: 0.5px solid rgb(219, 241, 255);
-
+hr.light {
+  border: 0.5px solid rgb(219, 241, 255);
 }
-.footer{
-    margin-right: auto;
+.footer {
+  margin-right: auto;
 }
-.footer a{
-    font-family: 'Raleway', sans-serif;
-    color: white;
-    font-size: 1.3em;
+.footer a {
+  font-family: "Raleway", sans-serif;
+  color: white;
+  font-size: 1.3em;
 }
 
 /* Modal */
-.modal-content{
-    background-color: #333333;
+.modal-content {
+  background-color: #333333;
 }
-.modal-icon{
-    font-size: 2em;
-    font-weight: bold;
+.modal-icon {
+  font-size: 2em;
+  font-weight: bold;
 }
-.btn-login-google{
-    border: none;
-    width: 270px;
-    height: 64px;
-    background-image: url("/icons/google+/btn_google_signin_light_normal_web@2x.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-color: rgba(0, 0, 0, 0.0)
+.btn-login-google {
+  border: none;
+  width: 270px;
+  height: 64px;
+  background-image: url("/icons/google+/btn_google_signin_light_normal_web@2x.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: rgba(0, 0, 0, 0);
 }
-.btn-login-face{
-    border: none;
-    width: 270px;
-    height: 58px;
-    background-image: url("/icons/facebook/facebook-sign-in-button-1.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-color: rgba(0, 0, 0, 0.0)
+.btn-login-face {
+  border: none;
+  width: 270px;
+  height: 58px;
+  background-image: url("/icons/facebook/facebook-sign-in-button-1.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: rgba(0, 0, 0, 0);
 }
 
-.btn-login-google:hover{
-    border: 1px solid rgb(255, 255, 255)
+.btn-login-google:hover {
+  border: 1px solid rgb(255, 255, 255);
 }
-.btn-login-face:hover{
-    border: 1px solid rgb(229, 238, 255)
+.btn-login-face:hover {
+  border: 1px solid rgb(229, 238, 255);
 }
 
 @media only screen and (max-width: 600px) {
-    h1{
-        font-size: 2em;
-    }
-    .navbar{
-        height: 8vh;
-    }
-    #div_opentutorial{
-        /* height: 6vh; */
-    }
-    .main1{
-        height: 74vh;
-    }
-    #inputGroup-sizing-lg{
-        width: 100%;
-    }
-    #btn-main{
-        width: 100%;
-    }
-    #img-logo{
-        width: 100%;
-    }
-    .navbar-collapse{
-        padding: 5px 10px 5px 10px;
-        background-color: #333333;
-        z-index: 2;
-    }
-    .nav-item-right{
-        margin: 4px 0px 4px 0px;
-        width: 100%;
-        height: 10vh;
-        font-size: 1.7em;
-    }
+  h1 {
+    font-size: 2em;
+  }
+  .navbar {
+    height: 8vh;
+  }
+  #div_opentutorial {
+    /* height: 6vh; */
+  }
+  .main1 {
+    height: 74vh;
+  }
+  #inputGroup-sizing-lg {
+    width: 100%;
+  }
+  #btn-main {
+    width: 100%;
+  }
+  #img-logo {
+    width: 100%;
+  }
+  .navbar-collapse {
+    padding: 5px 10px 5px 10px;
+    background-color: #333333;
+    z-index: 2;
+  }
+  .nav-item-right {
+    margin: 4px 0px 4px 0px;
+    width: 100%;
+    height: 10vh;
+    font-size: 1.7em;
+  }
 }

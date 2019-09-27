@@ -1,7 +1,6 @@
 nav {
   z-index: 3;
-  top: 0;
-  background-color: red; }
+  top: 0; }
   nav .navbar-collapse {
     background-color: #333333; }
 
