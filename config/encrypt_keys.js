@@ -7,6 +7,8 @@ async function main() {
     const secret = fs.readFileSync(__dirname + '/secret.txt', 'utf-8')
     encryptKeyFile('google-service-account.json', secret)
     encryptKeyFile('mlabs.json', secret)
+    encryptKeyFile('oauth.json', secret)
+    console.log("Encrypted all keys")
 }
 
 

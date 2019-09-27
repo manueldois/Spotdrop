@@ -1,6 +1,5 @@
-import '../scss/map_page.scss';
-import * as Uppy from 'uppy'
-import 'uppy/dist/uppy.min.css'
+import '../scss/map_page.scss'
+import { uppy } from './uppy'
 
 console.log("Map page script running")
 
@@ -278,7 +277,7 @@ function addAllMarkers(drops) {
         var drop = drops[i];
 
         if (findIfIvSeenDrop(drop._id) == true) {
-            var icon_size = new google.maps.Size(20, 20)
+            var icon_size = new google.maps.Size(40, 40)
         } else {
             var icon_size = new google.maps.Size(50, 50)
         }
@@ -588,7 +587,7 @@ function setSBar(sbarID) {
     return false;
 }
 $(".sbar-profile-img").click(function () {
-    if(USER){
+    if (USER) {
         var url = "/myprofile"
         onUnload()
         $(location).attr('href', url)
@@ -625,21 +624,17 @@ $("#add-drop-iw").click(function () {
 
 // Upload via uppy
 var ALL_UPLOADS = []
+uppy.on('complete', (result) => {
+    if (result.successful.length > 0) {
+        var url_list = result.successful.map(upload_event => {
+            return upload_event.response.body.cloudUrl
+        })
+        ALL_UPLOADS = ALL_UPLOADS.concat(url_list)
+        previewUploads(ALL_UPLOADS)
+    }
+    uppy.getPlugin('Dashboard').closeModal()
+})
 
-// Uppy
-const uppy = Uppy.Core()
-    .use(Uppy.Dashboard, { trigger: '.open-uppy' })
-    .use(Uppy.XHRUpload, { endpoint: '/api/drop/upload-photo', fieldName: 'photo' })
-    .on('complete', (result) => {
-        if (result.successful.length > 0) {
-            var url_list = result.successful.map(upload_event => {
-                return upload_event.response.body.cloudUrl
-            })
-            ALL_UPLOADS = ALL_UPLOADS.concat(url_list)
-            previewUploads(ALL_UPLOADS)
-        }
-        uppy.getPlugin('Dashboard').closeModal()
-    })
 
 function previewUploads() {
     $("#sbar-form-upload-empty").hide();
@@ -678,20 +673,6 @@ function previewUploads() {
     })
     $("#input-urls").val(JSON.stringify(ALL_UPLOADS));
 }
-
-
-
-// Color picker
-$("#color-hashtag").colorPick({
-    'allowCustomColor': true
-    // 'palette': ["#F44336","#F06292","#FF6D00","#FFC107","#FFFF00","#AB47BC","#7C4DFF","#3D5AFE","#0D47A1","#03A9F4","#4DD0E1","#1DE9B6","#43A047","#76FF03","#6D4C41","#607D8B","#000000","#FFFFFF"]
-});
-$("#color-hashtag").colorPick({
-    'onColorSelected': function () {
-        $("#input-color").val(this.color)
-        this.element.css({ 'backgroundColor': this.color, 'color': this.color });
-    }
-})
 
 // Search
 function searchDB(val, type) {

@@ -1,6 +1,6 @@
 import '../scss/drop_page.scss';
-import * as Uppy from 'uppy'
-import 'uppy/dist/uppy.min.css'
+import {uppy} from './uppy'
+
 
 
 // Get data from EJS
@@ -261,10 +261,7 @@ function postUnlike(post_id) {
 
 // Uppy
 var ALL_UPLOADS = []
-const uppy = Uppy.Core()
-    .use(Uppy.Dashboard, { trigger: '.btn-add-img' })
-    .use(Uppy.XHRUpload, { endpoint: '/api/drop/upload-photo', fieldName: 'photo' })
-    .on('complete', (result) => {
+uppy.on('complete', (result) => {
         if (result.successful.length > 0) {
             var url_list = result.successful.map(upload_event => {
                 return upload_event.response.body.cloudUrl

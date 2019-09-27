@@ -1,4 +1,4 @@
-var express = require("express"),
+const express = require("express"),
     expressSession = require("express-session"),
     mongoose = require("mongoose"),
     bodyParser = require("body-parser"),
@@ -21,10 +21,13 @@ mongoose.connect(process.env['NODE_ENV'] === 'development' ? "mongodb://localhos
 
 var app = express();
 
+
 app.use(express.static("public"));
 app.use(methodOverride("_method"));
+app.use(methodOverride("Access-Control-Allow-Methods"));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.json({type: ['application/json','text/plain']}));
+
 
 app.use(expressSession({
     secret: "hiohiihohyihiolsjoidiopiu8yiok", // String a enviar num pedido 
@@ -32,8 +35,9 @@ app.use(expressSession({
     saveUninitialized: false, // Não criar cookies a quem n fizer login
 }));
 
-
-app.use(require('./controllers/companion').companionApp)
+// Attach Companion App 
+const companionController = require('./controllers/companion')
+app.use(companionController.router)
 
 // Passport
 app.use(passport.initialize()); // Ligar express e passport
@@ -60,14 +64,10 @@ app.use(usersRoute);
 app.use(dropsRoute);
 app.use(apiRoute)
 
-
-app.listen(process.env.PORT || 3000, function () {
-    console.log(`Server started on: ${process.env.PORT || 3000}`);
-});
-
 app.get("/", function (req, res) {
     res.render("home_page.ejs", { user: req.user });
 });
+
 app.get("/privacy", function (req, res) {
     res.render("privacy.ejs");
 });
@@ -75,5 +75,15 @@ app.get("/privacy", function (req, res) {
 app.get("*", function (req, res) {
     res.send("<img src='https://www.completewebresources.com/wp-content/uploads/Rawnet.png'>");
 });
+
+
+
+
+// Start server
+const server = app.listen(process.env.PORT || 3000, function () {
+    console.log(`Server started on: ${process.env.PORT || 3000}`);
+});
+companionController.attachWebSocket(server)
+
 
 

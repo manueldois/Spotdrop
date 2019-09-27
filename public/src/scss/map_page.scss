@@ -10,12 +10,17 @@ body {
   background-color: #00a99d;
 }
 
+
 /* Navbar */
 .navbar {
   padding: 0.15rem 0.4rem 0.15rem 0.4rem;
   box-shadow: 0 0 8px #666666;
   height: 55px;
   z-index: 3;
+
+  .navbar-collapse {
+    background-color: #333333;
+  }
 }
 .nav-profile-img {
   width: 40px;
@@ -192,6 +197,10 @@ body {
   border-radius: 10px;
   border-width: 0;
 }
+#input-color {
+  width: 50px;
+  height: 50px;
+}
 
 /* Sidebar following */
 
@@ -252,6 +261,11 @@ hr.light {
 }
 
 // Uppy modal
+.uppy-Root {
+  > * {
+    color: rgb(15, 15, 15);
+  }
+}
 
 /* Upload modal */
 .modal-content {
@@ -326,14 +340,23 @@ color {
   z-index: 2000;
 }
 
-/* Filestack */
-#__filestack-picker * {
-  color: black;
-}
 /* Text */
-* {
-  font-family: "Ubuntu", sans-serif;
-  color: white;
+main {
+  font-family: "Ubuntu", "Verdana", sans-serif;
+  > a,
+  input,
+  textarea,
+  .btn,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  span,
+  label,
+  p {
+    color: white;
+  }
 }
 .text-gray {
   color: rgb(53, 53, 53);
@@ -352,11 +375,7 @@ color {
 .work-sans {
   font-family: "Work Sans", sans-serif;
 }
-a,
-input,
-textarea {
-  color: white;
-}
+
 ::placeholder {
   color: rgb(206, 206, 206) !important;
 }
@@ -386,6 +405,10 @@ textarea {
 }
 .btn-add-drop {
   background-color: #7b68ee;
+}
+.btn-sbar-upload {
+  border-radius: 5px;
+  font-size: 1.3em;
 }
 #btn-helper {
   position: absolute;
@@ -515,6 +538,7 @@ textarea {
   background-color: #111111;
   max-width: 400px !important;
   max-height: unset !important;
+  padding: 8px !important;
 }
 
 .gm-style-iw-d {

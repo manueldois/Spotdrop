@@ -1,6 +1,11 @@
 nav {
   z-index: 3;
   top: 0;
+  background-color: red;
+
+  .navbar-collapse {
+    background-color: #333333;
+  }
 }
 
 // Tabs
@@ -22,6 +27,7 @@ div.tabs {
       text-align: center;
       font-size: 1.2em;
       background-color: rgb(27, 27, 27);
+      color: white;
     }
 
     > input:checked ~ span {
@@ -227,9 +233,23 @@ body {
 }
 
 /* Text */
-* {
-  font-family: "Ubuntu", sans-serif;
-  color: white;
+/* Text */
+main {
+  font-family: "Ubuntu", "Verdana", sans-serif;
+  > a,
+  input,
+  textarea,
+  .btn,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  span,
+  label,
+  p {
+    color: white;
+  }
 }
 .work-sans {
   font-family: "Work Sans", sans-serif;

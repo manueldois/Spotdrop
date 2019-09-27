@@ -1,6 +1,6 @@
 import '../scss/user_self_page.scss';
-import * as Uppy from 'uppy'
-import 'uppy/dist/uppy.min.css'
+import {uppy} from './uppy'
+
 
 
 $(".btn-edit").click(function (e) {
@@ -12,10 +12,7 @@ $(".btn-edit").click(function (e) {
 })
 
 // Profile pic via Uppy
-const uppy = Uppy.Core({allowMultipleUploads: false})
-    .use(Uppy.Dashboard, { trigger: '.open-uppy' })
-    .use(Uppy.XHRUpload, { endpoint: '/api/drop/upload-photo', fieldName: 'photo' })
-    .on('complete', (result) => {
+uppy.on('complete', (result) => {
         if (result.successful.length > 0) {
             const url_list = result.successful.map(upload_event => {
                 return upload_event.response.body.cloudUrl["_4x"]
