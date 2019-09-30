@@ -1,5 +1,7 @@
 import '../scss/map_page.scss'
-import { uppy } from './uppy'
+import { configUppy } from './uppy'
+import Uppy from '@uppy/core';
+import Dashboard from '@uppy/dashboard';
 
 console.log("Map page script running")
 
@@ -361,91 +363,51 @@ function makeIW(drop_id) {
     var drop = all_drops[drop_index];
     var post_id = drop.creation_post._id;
     var img_num = 0;
-    var contentString = '';
-    if (drop.best_post == null) {
-        console.log("Drop: ", drop)
-        contentString = '<div class="map-iw" data-owner="' + drop.owner._id + '">' +
-            '<div class="map-iw-head">' +
+    var contentString =
+        '<div class="map-iw" data-owner="' + drop.owner._id + '">' +
+        '<div class="map-iw-head">' +
 
-            '<div class="d-flex flex-row">' +
+        '<div class="d-flex flex-row">' +
 
-            '<div class="map-iw-profile-pic">' +
-            '<a href="' + "/user/" + drop.owner._id + '" onclick="onUnload()">' +
-            '<div class="sbar-profile-img" data-owner="' + drop.owner._id + '" style="background-image: url(' + drop.owner.info["profile_pic"] + ');"></div>' +
-            '</a>' +
-            '</div>' +
-
-            '<div class="w-100 ml-2">' +
-
-            '<span class="map-iw-user">' + drop.owner.username + '</span>' +
-            '<br class="d-md-none">' +
-            '<span class="work-sans map-iw-time ml-2">' + moment(drop.creation_date).fromNow() + '</span>' +
-
-            '<p class="map-iw-tag">#' + drop.hashtag.hashtag + '</p>' +
-            '<p class="map-iw-title">' + drop.title + '</p>' +
-            '</div>' +
-
-            '</div>' +
-
-            '</div>' +
-            '<div class="map-iw-body mt-2">' +
-
-            '<div class="map-iw-img" data-drop=' + drop_id + ' data-post=' + post_id + ' data-img=' + img_num + ' style="background-image: url(' + drop.creation_post.images[0].split(', ')[0] + ');" >' +
-            '</div>' +
-
-            '<div class="map-iw-footer">' +
-            '<div class="w-100 p-2 mt-1 d-flex flex-row align-items-center justify-content-between">' +
-            '<div>' +
-            '<button class="btn-star" data-like=0 data-postid="' + drop.creation_post._id + '" > <img src="/icons/star-outline.svg" width="25px" alt=""> </button>' +
-            '<span class="ml-2">' + drop.creation_post.likes_list.length + '</span>' +
-            '</div>' +
-            '<span>' + drop.posts_list.length + ' comments' + '</span>' +
-            '<a href="/drop/' + drop_id + '" onclick="onUnload()" class="btn btn-danger btn-goto-drop">Go to drop page..</a>'
+        '<div class="map-iw-profile-pic">' +
+        '<a href="' + "/user/" + drop.owner._id + '" onclick="onUnload()">' +
+        '<div class="sbar-profile-img" data-owner="' + drop.owner._id + '" style="background-image: url(' + drop.owner.info["profile_pic"] + ');"></div>' +
+        '</a>' +
         '</div>' +
-            '</div>'
 
+        '<div class="ml-3">' +
 
+        '<span class="map-iw-user">' + drop.owner.username + '</span>' +
+        '<br class="d-md-none">' +
+        '<span class="work-sans map-iw-time">' + moment(drop.creation_date).fromNow() + '</span>' +
+
+        '<p class="map-iw-tag">#' + drop.hashtag.hashtag + '</p>' +
+        '<p class="map-iw-title">' + drop.title + '</p>' +
+        '</div>' +
 
         '</div>' +
-            '</div>';
-    } else {
-        contentString = '<div class="map-iw" data-owner="' + drop.owner._id + '">' +
-            '<div class="map-iw-head">' +
 
-            '<div class="row">' +
+        '</div>' +
+        '<div class="map-iw-body mt-2">' +
+        '<a href="/drop/' + drop_id + '" ' + 'onclick="onUnload()">' +
+        '<div class="map-iw-img" data-drop=' + drop_id + ' data-post=' + post_id + ' data-img=' + img_num + ' style="background-image: url(' + drop.creation_post.images[0].split(', ')[0] + ');" >' +
+        '</div>' +
+        '</a>' +
 
-            '<div class="col-3">' +
-            '<a href="' + "/user/" + drop.owner._id + '">' +
-            '<div class="sbar-profile-img" data-owner="' + drop.owner._id + '" style="background-image: url(' + drop.owner.info.profile_pic + ');"></div>' +
-            '</a>' +
-            '</div>' +
+        '<div class="map-iw-footer">' +
+        '<div style="padding: 20px; display: flex; width: 100%; align-items: center; justify-content: space-between">' +
+        '<div>' +
+        '<button class="btn-star" data-like=0 data-postid="' + drop.creation_post._id + '" > <img src="/icons/star-outline.svg" width="25px" alt=""> </button>' +
+        '<span class="ml-2">' + drop.creation_post.likes_list.length + '</span>' +
+        '</div>' +
+        '<span>' + drop.posts_list.length + ' comments' + '</span>' +
+        '</div>' +
+        '<a href="/drop/' + drop_id + '" onclick="onUnload()" class="btn btn-goto-drop">Go to drop page..</a>'
+    '</div>' +
+        '</div>'
+    '</div>' +
+        '</div>';
 
-            '<div class="col-9">' +
-
-            '<span class="map-iw-user">' + drop.owner.username + '</span>' +
-            '<span class="work-sans map-iw-time ml-2">' + moment(drop.creation_date).fromNow() + '</span>' +
-
-            '<p class="map-iw-tag">#' + drop.hashtag + '</p>' +
-
-            '<p class="map-iw-title">' + drop.title + '</p>' +
-            '</div>' +
-
-            '</div>' +
-
-            '</div>' +
-            '<p class="map-iw-title">' + drop.title + '</p>' +
-            '<div class="map-iw-body mt-2">' +
-            '<div class="row no-gutters">' +
-            '<div class="col-6">' +
-            '<a href="' + "drop/" + drop_id + '"><img src="' + drop.best_post.images[0] + '" class="w-100" alt="" id="iw-img-best"></a>' +
-            '</div>' +
-            '<div class="col-6">' +
-            '<a href="' + "drop/" + drop_id + '"><img src="' + drop.creation_post.images[0] + '" class="w-100" alt="" id="iw-img-recent"></a>' +
-            '</div>' +
-            '</div>' +
-            '</div>' +
-            '</div>';
-    }
 
     infowindow.setContent(contentString)
     infowindow.drop_id = drop_id;
@@ -624,16 +586,25 @@ $("#add-drop-iw").click(function () {
 
 // Upload via uppy
 var ALL_UPLOADS = []
-uppy.on('complete', (result) => {
-    if (result.successful.length > 0) {
-        var url_list = result.successful.map(upload_event => {
-            return upload_event.response.body.cloudUrl
-        })
-        ALL_UPLOADS = ALL_UPLOADS.concat(url_list)
-        previewUploads(ALL_UPLOADS)
-    }
-    uppy.getPlugin('Dashboard').closeModal()
-})
+if (USER) {
+
+    const uppy = Uppy()
+    uppy.use(Dashboard, {
+        inline: true,
+        target: '#uppy-area'
+    })
+    configUppy(uppy)
+    uppy.on('complete', (result) => {
+        if (result.successful.length > 0) {
+            var url_list = result.successful.map(upload_event => {
+                return upload_event.response.body.cloudUrl
+            })
+            ALL_UPLOADS = ALL_UPLOADS.concat(url_list)
+            previewUploads(ALL_UPLOADS)
+        }
+        uppy.getPlugin('Dashboard').closeModal()
+    })
+}
 
 
 function previewUploads() {

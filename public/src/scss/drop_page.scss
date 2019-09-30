@@ -38,6 +38,17 @@ main {
   position: relative;
   display: block;
   width: 100vw;
+
+  span,
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: white;
+  }
 }
 
 /* Sidebar */
@@ -328,15 +339,21 @@ main {
 }
 
 /* Upload and view larger modal */
-.modal-content {
-  background-color: #333333;
-}
-.modal-body {
-  background-color: #333333;
-}
-.modal-icon {
-  font-size: 2em;
-  font-weight: bold;
+#view-larger-modal {
+  span, p, h1, h2, h3, h4, h5, h6 {
+    color: white;
+  }
+  
+  .modal-content {
+    background-color: #333333;
+  }
+  .modal-body {
+    background-color: #333333;
+  }
+  .modal-icon {
+    font-size: 2em;
+    font-weight: bold;
+  }
 }
 
 /* scrolbar */

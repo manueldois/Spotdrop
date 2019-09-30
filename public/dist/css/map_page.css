@@ -67,7 +67,8 @@ body {
 
 .dropdown-item {
   white-space: normal;
-  cursor: pointer; }
+  cursor: pointer;
+  color: white; }
 
 .dropdown-item :hover * {
   color: darkslategray; }
@@ -80,7 +81,8 @@ body {
   width: 350px;
   z-index: 999;
   background-color: #333333;
-  border-radius: 10px; }
+  border-radius: 10px;
+  color: white; }
 
 .query-thumbnail {
   width: 70px;
@@ -123,26 +125,13 @@ body {
 .sbar-container {
   width: 100%;
   padding: 5%;
-  margin-top: 20px; }
+  margin-top: 20px;
+  color: white; }
 
 .sbar-fadein {
   left: 0; }
 
 /* Sidebar upload */
-.sbar-icon {
-  background: rgba(0, 0, 0, 0.4);
-  border-radius: 10px;
-  border-width: 0;
-  width: 50px;
-  height: 50px; }
-
-.sbar-icon-text {
-  background: rgba(0, 0, 0, 0.4);
-  border-radius: 10px;
-  border-width: 0;
-  height: 50px;
-  font-weight: bold; }
-
 .sbar-input {
   background: rgba(0, 0, 0, 0.25);
   border-radius: 10px;
@@ -241,25 +230,27 @@ hr.light {
   background-color: #dbf1ff;
   border: 0; }
 
-.uppy-Root > * {
-  color: #0f0f0f; }
-
 /* Upload modal */
 .modal-content {
-  background-color: #333333; }
-
-.modal-icon {
-  font-size: 2em;
-  font-weight: bold; }
+  background-color: #e2e2e2;
+  color: #1b1b1b; }
+  .modal-content input.form-control {
+    background-color: white;
+    border: 0.5px solid gray; }
+  .modal-content textarea {
+    width: 100%; }
+  .modal-content div.hash-icon {
+    background: white;
+    border-radius: 10px;
+    border-width: 0;
+    width: 50px;
+    height: 50px; }
 
 .modal-backdrop {
   z-index: 12; }
 
 .modal {
   z-index: 13; }
-
-color {
-  color: #10526e; }
 
 #input-place {
   background: none;
@@ -283,20 +274,21 @@ color {
 /* Upload drop iw*/
 #add-drop-iw {
   position: absolute;
-  background-color: red;
+  background-color: #7b68ee;
   border-radius: 30000000px;
   border: none;
   box-shadow: 2px 2px 8px #666666;
   z-index: 10;
   padding: 0;
   width: fit-content;
-  cursor: pointer; }
+  cursor: pointer;
+  color: white; }
 
 #add-drop-iw:hover {
-  background-color: #c70000; }
+  background-color: #533ae9; }
 
 .add-drop-profile-container {
-  background-color: #c90000;
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 200000000px;
   padding: 2px; }
 
@@ -312,19 +304,6 @@ color {
 /* Text */
 main {
   font-family: "Ubuntu", "Verdana", sans-serif; }
-  main > a,
-  main input,
-  main textarea,
-  main .btn,
-  main h1,
-  main h2,
-  main h3,
-  main h4,
-  main h5,
-  main span,
-  main label,
-  main p {
-    color: white; }
 
 .text-gray {
   color: #353535; }
@@ -369,7 +348,8 @@ main {
   background-color: azure; }
 
 .btn-add-drop {
-  background-color: #7b68ee; }
+  background-color: #7b68ee;
+  color: white; }
 
 .btn-sbar-upload {
   border-radius: 5px;
@@ -389,11 +369,13 @@ main {
   padding: 0; }
 
 .btn-goto-drop {
-  background: #ec0000;
-  border-bottom: 2px solid;
-  border-radius: 0px;
-  border-style: outset;
-  font-size: 1em; }
+  border-bottom: 2px;
+  border-radius: 2px;
+  width: 100%;
+  background-color: #0071bc;
+  font-size: 1.3em;
+  font-weight: bold;
+  color: white; }
 
 .btn-remove-img {
   position: absolute;
@@ -455,19 +437,15 @@ main {
   overflow-x: hidden; }
 
 .map-iw-tag {
-  color: white;
   font-size: 1.5em; }
 
 .map-iw-user {
-  color: white;
   font-size: 2em; }
 
 .map-iw-time {
-  color: #ececec;
   font-size: 1.2em; }
 
 .map-iw-title {
-  color: white;
   font-size: 1.5em; }
 
 .map-iw-profile-pic {
@@ -484,18 +462,20 @@ main {
 
 .map-iw-img {
   height: 300px;
-  width: 300px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover; }
 
 .map-iw-footer {
   width: 100%;
-  background-color: #33333380;
-  border-radius: 5px; }
+  background-color: #7c68eecc;
+  color: white;
+  border-radius: 2px;
+  font-size: 1.2em;
+  font-weight: bold; }
 
 .gm-style-iw.gm-style-iw-c {
-  background-color: #111111;
+  color: black;
   max-width: 400px !important;
   max-height: unset !important;
   padding: 8px !important; }

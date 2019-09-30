@@ -1,14 +1,16 @@
 body {
   min-height: 100vh;
-  background-color: #333333; }
+  background-color: #333333;
+  overflow-x: hidden; }
 
-.main1 {
+main {
   margin: auto;
-  width: 50%;
+  width: 100vw;
   padding-top: 50px;
   padding-left: 15px;
   padding-right: 15px;
-  background: linear-gradient(to bottom right, #29abe2, #0064a7); }
+  background: linear-gradient(to bottom right, #29abe2, #0064a7);
+  color: white; }
 
 /* Flash message */
 .flash-msg {
@@ -17,7 +19,6 @@ body {
   z-index: 4;
   font-family: "Work Sans", sans-serif; }
 
-/* Navbar */
 /* Navbar */
 .navbar {
   padding: 0.15rem 0.4rem 0.15rem 0.4rem;

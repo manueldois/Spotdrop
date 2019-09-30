@@ -138,6 +138,10 @@
                 <% } %>
 
                 <% }} %>
+
+                <% if(!following_news[0]){ %>
+                    <p style="text-align: center; font-size: 1.2em; margin-top: 30px">No new activity to show</p>
+                <% } %>
             </div>
             <button class="btn btn-collapse"> <img src="/icons/chevron-left.svg" width="12px" alt=""> </button>
         </div>
@@ -327,11 +331,10 @@
                                         style="background-image: url(' <%= user.info.profile_pic %> ');"></div>
                                 </div>
                                 <div class="ml-5 mt-2 w-75" style="">
-                                    <span> <%= user.username %> </span><br>
+                                    <span> <%= user.username %> in </span><br>
                                     <!-- Place -->
-                                    <span class="mt-4">in </span>
-                                    <input type="text" readonly class="w-75" id="input-place" name="place"
-                                        placeholder="...">
+                                    <textarea type="text" readonly class="w-75" id="input-place" name="place"
+                                        placeholder="..."></textarea>
                                 </div>
                             </div>
                         </div>
@@ -339,8 +342,7 @@
                         <div class="px-3 pt-1 pb-4">
 
                             <!-- Location -->
-                            <input type="hidden" class="form-control text-right sbar-input" id="input-location"
-                                name="location">
+                            <input type="hidden" class="form-control text-right" id="input-location" name="location">
 
                             <!-- Title -->
                             <div class="input-group mt-3">
@@ -351,15 +353,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <input type="text" class="form-control text-right sbar-input" name="title"
-                                    placeholder="...">
+                                <input type="text" class="form-control text-right" name="title" placeholder="...">
                             </div>
 
-                            <!-- Open uppy -->
-                            <button type="button" id="sbar-form-upload-empty" class="open-uppy sbar-form-upload mt-3"
-                                style="cursor: pointer">
-                                <h5 class="work-sans font-weight-bold text-center">Click to open upload modal </h5>
-                            </button>
+                            <!-- Uppy -->
+                            <div id="uppy-area"></div>
 
                             <!-- Preview pics -->
                             <div id="sbar-form-preview-img" class="sbar-form-upload mt-3" style="display: none">
@@ -379,15 +377,15 @@
                             <!-- Hashtag -->
                             <div class="input-group mt-3">
                                 <div class="input-group-prepend">
-                                    <div class="input-group-text pt-2 sbar-icon">
+                                    <div class="input-group-text pt-2 hash-icon">
                                         <div class="d-block mx-auto">
-                                            <img id="hash-icon" src="/icons/hashtag-white.svg" width="30px" alt="">
+                                            <img id="hash-icon" src="/icons/hashtag-black.svg" width="30px" alt="">
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="dropdown dropdown-container-hashtag">
-                                    <input type="text" class="form-control sbar-input" name="hashtag" id="src-hashtag"
+                                    <input type="text" class="form-control" name="hashtag" id="src-hashtag"
                                         placeholder="What is your drop about? Leave empty, choose one from the list or create your own">
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
                                         id="src-drop-hashtag">
@@ -400,7 +398,7 @@
 
                             <!-- Comment -->
                             <textarea placeholder="Write a comment.." name="comment" style="min-height: 10vh"
-                                class="p-4 mt-3 sbar-form-comment" data-autosize-input='{ "space": 200 }'></textarea>
+                                class="p-4 mt-3" data-autosize-input='{ "space": 200 }'></textarea>
 
                             <!-- Hidden input - images urls -->
                             <input type="hidden" name="urls" id="input-urls">
@@ -487,11 +485,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.js"></script>
     <!-- Observables -->
     <script src="https://unpkg.com/@reactivex/rxjs@5.3.0/dist/global/Rx.js"></script>
-    <!-- Autosize -->
-    <script src='dist/js/autosize.js'></script>
-    <script defer>
-        autosize(document.querySelectorAll('textarea'));
-    </script>
     <!-- My script -->
     <script src="/dist/js/map_page.js"></script>
 

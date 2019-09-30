@@ -2,20 +2,21 @@ body {
   min-height: 100vh;
   background-color: #333333; }
 
-.main1 {
+main {
   margin: auto;
   width: 50%;
   padding-top: 50px;
   padding-left: 15px;
   padding-right: 15px;
-  background: linear-gradient(to bottom right, #29ABE2, #0064a7); }
+  background: linear-gradient(to bottom right, #29abe2, #0064a7);
+  color: white; }
 
 /* Flash message */
 .flash-msg {
   position: absolute;
   top: 5vh;
   z-index: 4;
-  font-family: 'Work Sans', sans-serif; }
+  font-family: "Work Sans", sans-serif; }
 
 /* Navbar */
 /* Navbar */
@@ -37,7 +38,7 @@ body {
   color: white;
   font-weight: normal;
   font-size: 1.5em;
-  font-family: 'Work Sans', sans-serif;
+  font-family: "Work Sans", sans-serif;
   border-radius: 10px; }
 
 .nav-link:hover {
@@ -54,7 +55,7 @@ body {
   margin-left: 10px; }
 
 .bg-green {
-  background-color: #00A99D; }
+  background-color: #00a99d; }
 
 /* Form */
 form label {
@@ -66,7 +67,7 @@ form small {
 
 /* Text */
 * {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
   color: white; }
 
 textarea {
@@ -128,13 +129,15 @@ textarea {
   flex-shrink: 0; }
 
 /* Form */
-#input-username, #input-city {
+#input-username,
+#input-city {
   width: 75%;
   background: none;
   border: none;
   color: white; }
 
-#input-username:focus, #input-city:focus {
+#input-username:focus,
+#input-city:focus {
   background-color: rgba(0, 0, 0, 0.3); }
 
 #input-about {

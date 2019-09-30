@@ -1,5 +1,7 @@
 import '../scss/user_self_page.scss';
-import {uppy} from './uppy'
+import {configUppy} from './uppy'
+import Uppy from '@uppy/core';
+import { Dashboard } from 'uppy';
 
 
 
@@ -12,6 +14,9 @@ $(".btn-edit").click(function (e) {
 })
 
 // Profile pic via Uppy
+const uppy = Uppy()
+uppy.use(Dashboard, {trigger: '.open-uppy'})
+configUppy(uppy)
 uppy.on('complete', (result) => {
         if (result.successful.length > 0) {
             const url_list = result.successful.map(upload_event => {

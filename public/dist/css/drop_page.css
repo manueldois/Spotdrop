@@ -29,6 +29,15 @@ main {
   position: relative;
   display: block;
   width: 100vw; }
+  main span,
+  main p,
+  main h1,
+  main h2,
+  main h3,
+  main h4,
+  main h5,
+  main h6 {
+    color: white; }
 
 /* Sidebar */
 .sidebar {
@@ -302,13 +311,16 @@ main {
   z-index: 1000; }
 
 /* Upload and view larger modal */
-.modal-content {
+#view-larger-modal span, #view-larger-modal p, #view-larger-modal h1, #view-larger-modal h2, #view-larger-modal h3, #view-larger-modal h4, #view-larger-modal h5, #view-larger-modal h6 {
+  color: white; }
+
+#view-larger-modal .modal-content {
   background-color: #333333; }
 
-.modal-body {
+#view-larger-modal .modal-body {
   background-color: #333333; }
 
-.modal-icon {
+#view-larger-modal .modal-icon {
   font-size: 2em;
   font-weight: bold; }
 

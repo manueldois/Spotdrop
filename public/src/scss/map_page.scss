@@ -72,6 +72,7 @@ body {
 .dropdown-item {
   white-space: normal;
   cursor: pointer;
+  color: white;
 }
 .dropdown-item :hover * {
   color: darkslategray;
@@ -86,6 +87,7 @@ body {
   z-index: 999;
   background-color: #333333;
   border-radius: 10px;
+  color: white;
 }
 .query-thumbnail {
   width: 70px;
@@ -130,26 +132,13 @@ body {
   width: 100%;
   padding: 5%;
   margin-top: 20px;
+  color: white;
 }
 .sbar-fadein {
   left: 0;
 }
 
 /* Sidebar upload */
-.sbar-icon {
-  background: rgba(0, 0, 0, 0.4);
-  border-radius: 10px;
-  border-width: 0;
-  width: 50px;
-  height: 50px;
-}
-.sbar-icon-text {
-  background: rgba(0, 0, 0, 0.4);
-  border-radius: 10px;
-  border-width: 0;
-  height: 50px;
-  font-weight: bold;
-}
 .sbar-input {
   background: rgba(0, 0, 0, 0.25);
   border-radius: 10px;
@@ -255,30 +244,37 @@ hr.light {
   border: 0;
 }
 
-// Uppy modal
-.uppy-Root {
-  > * {
-    color: rgb(15, 15, 15);
-  }
-}
 
 /* Upload modal */
 .modal-content {
-  background-color: #333333;
+  background-color: #e2e2e2;
+  color: rgb(27, 27, 27);
+
+  input.form-control {
+    background-color: white;
+    border: 0.5px solid gray;
+  }
+
+  textarea{
+    width: 100%;
+  }
+
+  div.hash-icon {
+    background: rgb(255, 255, 255);
+    border-radius: 10px;
+    border-width: 0;
+    width: 50px;
+    height: 50px;
+  }
 }
-.modal-icon {
-  font-size: 2em;
-  font-weight: bold;
-}
+
 .modal-backdrop {
   z-index: 12;
 }
 .modal {
   z-index: 13;
 }
-color {
-  color: rgb(16, 82, 110);
-}
+
 #input-place {
   background: none;
   border: none;
@@ -302,7 +298,7 @@ color {
 /* Upload drop iw*/
 #add-drop-iw {
   position: absolute;
-  background-color: rgb(255, 0, 0);
+  background-color: #7b68ee;
   border-radius: 30000000px;
   border: none;
   box-shadow: 2px 2px 8px #666666;
@@ -310,12 +306,13 @@ color {
   padding: 0;
   width: fit-content;
   cursor: pointer;
+  color: white;
 }
 #add-drop-iw:hover {
-  background-color: rgb(199, 0, 0);
+  background-color: darken(#7b68ee,10%);
 }
 .add-drop-profile-container {
-  background-color: rgb(201, 0, 0);
+  background-color: rgba(0,0,0,0.5);
   border-radius: 200000000px;
   padding: 2px;
 }
@@ -338,20 +335,7 @@ color {
 /* Text */
 main {
   font-family: "Ubuntu", "Verdana", sans-serif;
-  > a,
-  input,
-  textarea,
-  .btn,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  span,
-  label,
-  p {
-    color: white;
-  }
+
 }
 .text-gray {
   color: rgb(53, 53, 53);
@@ -400,6 +384,7 @@ main {
 }
 .btn-add-drop {
   background-color: #7b68ee;
+  color: white;
 }
 .btn-sbar-upload {
   border-radius: 5px;
@@ -419,11 +404,13 @@ main {
   padding: 0;
 }
 .btn-goto-drop {
-  background: rgb(236, 0, 0);
-  border-bottom: 2px solid;
-  border-radius: 0px;
-  border-style: outset;
-  font-size: 1em;
+  border-bottom: 2px;
+  border-radius: 2px;
+  width: 100%;
+  background-color: #0071bc;
+  font-size: 1.3em;
+  font-weight: bold;
+  color: white;
 }
 .btn-remove-img {
   position: absolute;
@@ -488,19 +475,15 @@ main {
   overflow-x: hidden;
 }
 .map-iw-tag {
-  color: white;
   font-size: 1.5em;
 }
 .map-iw-user {
-  color: white;
   font-size: 2em;
 }
 .map-iw-time {
-  color: rgb(236, 236, 236);
   font-size: 1.2em;
 }
 .map-iw-title {
-  color: white;
   font-size: 1.5em;
 }
 .map-iw-profile-pic {
@@ -518,19 +501,21 @@ main {
 }
 .map-iw-img {
   height: 300px;
-  width: 300px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 }
 .map-iw-footer {
   width: 100%;
-  background-color: #33333380;
-  border-radius: 5px;
+  background-color: #7c68eecc;
+  color: white;
+  border-radius: 2px;
+  font-size: 1.2em;
+  font-weight: bold;
 }
 
 .gm-style-iw.gm-style-iw-c {
-  background-color: #111111;
+  color: black;
   max-width: 400px !important;
   max-height: unset !important;
   padding: 8px !important;

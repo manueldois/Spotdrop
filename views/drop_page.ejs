@@ -30,7 +30,7 @@
     <nav class="sbar-nav pl-1 d-flex flex-row align-items-center justify-content-between">
         <a href="/map" class="sbar-nav-link">
             <img src="/icons/chevron-left.svg" width="10px" class="mt-1 ml-1" alt="">
-            <span class="h6">Back to map</span>
+            <span>Back to map</span>
         </a>
         <% if(!isFollowing){ %>
         <button class="btn" id="btn-unfollow" data-id="<%= drop._id %>" style="display: none">Unfollow</button>
@@ -45,17 +45,17 @@
     <div class="tabs">
         <label>
             <input class="d-none" type="radio" name="tabs" value="comments" id="">
-            <span>Comments</span> 
+            <span>Comments</span>
         </label>
         <label>
             <input class="d-none" checked type="radio" name="tabs" value="images" id="">
-            <span>Images</span> 
+            <span>Images</span>
         </label>
     </div>
 
     <!-- MAIN -->
     <main>
-        <!-- SIDEBAR -->
+        <!-- COMMENTS SIDEBAR -->
         <div class="sidebar" id="sidebar">
             <!-- POSTS -->
             <div class="w-100 mt-2 p-3">
@@ -64,18 +64,16 @@
                 <div class="post" data-post-id="<%=drop.posts_list[0]._id%>" data-owner-id="<%=drop.owner._id%>"
                     data-drop-id="<%= drop._id %>">
 
+                    <!-- USER -->
                     <div class="d-flex flex-row align-items-flex-start">
                         <div style="width: 100px; flex: none">
                             <div class="sbar-profile-img w-100"
                                 style="background-image: url('<%= drop.owner.info.profile_pic %>');"></div>
                         </div>
-                        <div class="ml-3">
+                        <div class="ml-5">
                             <a href="/user/<%=drop.owner._id%>" class="username"><%= drop.owner.username %></a>
-                            <br>
                             <span class="txt-date" data-date-iso="<%= drop.posts_list[0].creation_date %>"></span>
-                            <br>
-                            <div class="mt-3"></div>
-                            <div class="w-100 d-flex flex-row flex-wrap align-items-center">
+                            <div class="w-100 mt-3 d-flex flex-row flex-wrap align-items-center">
                                 <button class="btn-star" data-like=0> <img src="/icons/star-outline.svg" width="25px"
                                         alt=""> </button>
                                 <span class="ml-2"><%= drop.posts_list[0].likes_list.length %></span>
@@ -83,9 +81,9 @@
                         </div>
                     </div>
 
-                    <p class="h4 mt-3"><%= drop.title %></p>
+                    <h2 class="mt-3"><%= drop.title %></h2>
                     <% if(drop.hashtag.hashtag){ %>
-                    <p class="h6 mt-2">#<%= drop.hashtag.hashtag %></p>
+                    <h3 class="mt-2">#<%= drop.hashtag.hashtag %></h3>
                     <% } %>
                     <% if(drop.posts_list[0].comment){ %>
                     <p class="comment mt-3"><%= drop.posts_list[0].comment %></p>
@@ -232,7 +230,6 @@
             </div>
 
 
-
             <!-- RESTO DOS POSTS -->
             <% for(var i = drop.posts_list.length - 1; i > 0  ; i--){ %>
             <% var c_post = drop.posts_list[i]; %>
@@ -248,24 +245,12 @@
                 <div class="img-grid-divider"></div>
             </div>
 
-            <div class="row no-gutters" data-post-id="<%= c_post._id %>">
-                <div class="col-4 p-1">
-                    <% if(c_post.images[j]){ %>
-                    <img class="w-100 img-grid-img" data-img-num="<%=j%>" src="<%= c_post.images[j] %>" alt="">
-                    <% } %>
-                </div>
-
-                <div class="col-4 p-1">
-                    <% if(c_post.images[j+1]){ %>
-                    <img class="w-100 img-grid-img" data-img-num="<%=j+1%>" src="<%= c_post.images[j+1] %>" alt="">
-                    <% } %>
-                </div>
-
-                <div class="col-4 p-1">
-                    <% if(c_post.images[j+2]){ %>
-                    <img class="w-100 img-grid-img" data-img-num="<%=j+2%>" src="<%= c_post.images[j+2] %>" alt="">
-                    <% } %>
-                </div>
+            <div class="post-images" data-post-id="<%= c_post._id %>">
+                <% for(var j = 0; j < c_post.images.length; j++){ %>
+                <% if(c_post.images[j]){ %>
+                <img class="w-100 img-grid-img" data-img-num="<%=j%>" src="<%= c_post.images[j] %>" alt="">
+                <% } %>
+                <% } %>
             </div>
 
             <% } %>
@@ -289,13 +274,13 @@
                         </div>
                         <div class="ml-5">
                             <div>
-                                <a href="/user/" class="username h3"></a>
+                                <a href="/user/" class="username"></a>
                                 <span class="txt-date"></span>
                             </div>
                             <div class="mt-3 w-100 d-flex flex-row flex-wrap align-items-center ">
                                 <button class="btn-star" data-like=0> <img src="/icons/star-outline.svg" width="30px"
                                         alt=""> </button>
-                                <span class="ml-2 h4 likes-count"><%= drop.posts_list[0].likes_list.length %></span>
+                                <span class="ml-2 likes-count"><%= drop.posts_list[0].likes_list.length %></span>
                             </div>
                         </div>
                     </div>
