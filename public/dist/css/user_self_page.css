@@ -1,7 +1,7 @@
 body {
   min-height: 100vh;
-  background-color: #333333;
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  background: linear-gradient(to bottom right, #29abe2, #0064a7); }
 
 main {
   margin: auto;
@@ -9,7 +9,6 @@ main {
   padding-top: 50px;
   padding-left: 15px;
   padding-right: 15px;
-  background: linear-gradient(to bottom right, #29abe2, #0064a7);
   color: white; }
 
 /* Flash message */
@@ -182,7 +181,16 @@ textarea {
 
 #latest-activity {
   width: 100%;
+  max-height: 100vh;
   overflow-y: auto; }
+
+#account-settings {
+  margin-top: 30px;
+  margin-bottom: 60px;
+  display: flex;
+  justify-content: right; }
+  #account-settings > #btn-delete-account {
+    margin-left: auto; }
 
 .latest-activity-comment {
   max-height: 25vh;

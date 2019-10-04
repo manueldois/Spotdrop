@@ -1,5 +1,5 @@
 import '../scss/user_self_page.scss';
-import {configUppy} from './uppy'
+import { configUppy } from './uppy'
 import Uppy from '@uppy/core';
 import { Dashboard } from 'uppy';
 
@@ -15,19 +15,19 @@ $(".btn-edit").click(function (e) {
 
 // Profile pic via Uppy
 const uppy = Uppy()
-uppy.use(Dashboard, {trigger: '.open-uppy'})
+uppy.use(Dashboard, { trigger: '.open-uppy' })
 configUppy(uppy)
 uppy.on('complete', (result) => {
-        if (result.successful.length > 0) {
-            const url_list = result.successful.map(upload_event => {
-                return upload_event.response.body.cloudUrl["_4x"]
-            })
-            console.log("Uploaded url: ", result.successful, "url_list: ", url_list)
-            $("#input-profile-pic").val(url_list[0])
-            $('#self-profile-pic').css("background-image", `url(${url_list[0]})`)
-        }
-        uppy.getPlugin('Dashboard').closeModal()
-    })
+    if (result.successful.length > 0) {
+        const url_list = result.successful.map(upload_event => {
+            return upload_event.response.body.cloudUrl["_4x"]
+        })
+        console.log("Uploaded url: ", result.successful, "url_list: ", url_list)
+        $("#input-profile-pic").val(url_list[0])
+        $('#self-profile-pic').css("background-image", `url(${url_list[0]})`)
+    }
+    uppy.getPlugin('Dashboard').closeModal()
+})
 
 
 function modalCopyUrl() {
@@ -92,6 +92,14 @@ function postUnfollowDrop(id) {
         }
     });
 }
+
+$("#form-delete-account").on('submit', (e) => {
+    const sure = confirm("Are you sure you want to delete your account and everything with it?")
+
+    if (!sure) e.preventDefault()
+})
+
+
 
 // Convert date ISO to preety date
 $(".txt-date").show(function () {

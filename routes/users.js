@@ -18,10 +18,9 @@ app.get("/loginfacebook/redirect",passport.authenticate("facebook"),UserCtrl.log
 // If user is new, redirect to sign-up-external
 
 app.put("/completesignup",UserCtrl.completeSignup)
-
-
-
 app.get("/user/:id",UserCtrl.renderUser)
+app.delete("/user/:id", UserCtrl.isLoggedIn, UserCtrl.deleteAccount)
+
 
 app.get("/myprofile",UserCtrl.isLoggedIn,UserCtrl.renderUserSelf)
 app.put("/myprofile",UserCtrl.isLoggedIn,UserCtrl.editUser)

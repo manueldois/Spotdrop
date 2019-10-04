@@ -134,7 +134,7 @@
                                 <div class="d-flex flex-column h-100">
                                     <div class="latest-activity-header">
                                         <span class="h4"><%= user.username %></span> <span class="txt-ago" data-date="<%= drop.creation_date%>"></span>
-                                        <% if(drop.hashtag){ %>
+                                        <% if(drop.hashtag.hashtag){ %>
                                         <h4 style="color: red">#<%= drop.hashtag.hashtag %></h3>
                                         <% } %>
                                     </div>
@@ -147,10 +147,16 @@
                         </div>
                         <hr class="hr-blue hr-horizontal w-75 mx-auto mt-2">
                     </div>
-                        
-                <!-- FIM DE LISTA -->
                 <% }} %>
             </div>
+        </div>
+
+
+        <!-- ACCOUNT SETTINGS -->
+        <div id="account-settings">
+            <form action="/user/<%=user._id%>?_method=DELETE" id="form-delete-account" method="post">
+                <button type="submit" class="btn btn-danger">Delete Account</button>
+            </form>
         </div>
 
 </main>

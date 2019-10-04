@@ -1,6 +1,7 @@
 const User = require("../models/user"),
   Drop = require("../models/drop"),
-  Post = require("../models/post");
+  Post = require("../models/post"),
+  Reply = require("../models/reply");
 
 
 
@@ -158,6 +159,24 @@ exports.saveNewDrop = saveNewDrop;
 exports.saveNewPost = saveNewPost;
 exports.saveNewReply = saveNewReply;
 
+exports.deleteUser = async function (user_id) {
+    try {
+      
+      const user = await User.findById(user_id).exec()
+      console.log(user)
+      if (!user) throw new Error('No user found')
+
+      Drop.deleteMany().where('_id').in(user.drops_list).exec()
+      Post.deleteMany().where('_id').in(user.posts_list).exec()
+      Reply.deleteMany().where('_id').in(user.replies_list).exec()
+      User.deleteOne().where('_id').equals(user_id).exec()
+
+      return
+    } catch (error) {
+      return error
+    }
+}
+
 exports.getDropsToMap = function () {
   return new Promise((resolve, reject) => {
     Drop.find({}).populate([{
@@ -266,9 +285,9 @@ exports.getLatestActivity = function (user_id) { // only drops
         drops.forEach(drop => {
           if (drop.creation_post.images) {
             drop.creation_post.images = drop.creation_post.images.map(urls_concat => {
-              if(urls_concat){
+              if (urls_concat) {
                 return urls_concat.split(', ')[0]
-              }else{
+              } else {
                 return ''
               }
             })

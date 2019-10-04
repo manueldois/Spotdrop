@@ -122,3 +122,18 @@ exports.isLoggedIn = function (req, res, next) {
     req.flash("failure", "You need to be logged in to view this page")
     res.redirect("/map");
 }
+
+exports.deleteAccount = async function (req, res, next) {
+    console.log("Deleting user: ", req.user._id)
+    try {
+        await DatabaseCtrl.deleteUser(req.user._id)
+        req.flash("success", "Your account has been deleted")
+        req.logout()
+        res.redirect("/map");
+    } catch (error) {
+        console.error(error)
+        req.flash("error", error.toString())    
+        res.redirect("/map");
+    }
+
+}
