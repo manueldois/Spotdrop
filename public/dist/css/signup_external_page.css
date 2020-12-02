@@ -1,105 +1,130 @@
 body {
   min-height: 100vh;
-  background: linear-gradient(to bottom right, #29ABE2, #0071BC); }
+  background: linear-gradient(to bottom right, #29ABE2, #0071BC);
+}
 
 /* Colors */
 .bg-green {
-  background-color: #18ce00; }
+  background-color: #18ce00;
+}
 
 /* Navbar */
 .navbar {
-  background: rgba(0, 0, 0, 0.6); }
+  background: rgba(0, 0, 0, 0.6);
+}
 
 .nav-link {
   color: white;
   font-weight: bold;
-  font-size: 1.4em; }
+  font-size: 1.4em;
+}
 
 .nav-link:hover {
-  color: tomato; }
+  color: tomato;
+}
 
 .navbar-brand {
-  width: 10vw; }
+  width: 10vw;
+}
 
 .nav-item-right {
   height: 100%;
   background: none !important;
   color: white;
-  border: 2px solid white; }
+  border: 2px solid white;
+}
 
 .nav-item-right:hover * {
-  color: greenyellow; }
+  color: greenyellow;
+}
 
 .nav-item-right:hover {
-  color: greenyellow; }
+  color: greenyellow;
+}
 
 /* Form */
 form label {
   color: white;
-  font-size: 1.5em; }
+  font-size: 1.5em;
+}
 
 form small {
-  color: lightgray; }
+  color: lightgray;
+}
 
 /* Text */
 * {
-  font-family: 'Ubuntu', sans-serif;
-  color: white; }
+  font-family: "Ubuntu", sans-serif;
+  color: white;
+}
 
 input {
-  color: black; }
+  color: black;
+}
 
 /* Flash message */
 .flash-msg {
   position: absolute;
   top: 5vh;
   z-index: 4;
-  font-family: 'Work Sans', sans-serif; }
+  font-family: "Work Sans", sans-serif;
+}
 
 /* Filestack */
 #__filestack-picker * {
-  color: black; }
+  color: black;
+}
 
 /* Modal */
 .modal-content {
-  background-color: #333333; }
+  background-color: #333333;
+}
 
 /* Buttons */
 .btn-round {
   border-radius: 20000px;
-  background: none; }
+  background: none;
+}
 
 .btn-lg {
-  border: solid 2px; }
+  border: solid 2px;
+}
 
 .btn-white {
   color: white;
-  border-color: white; }
+  border-color: white;
+}
 
 #btn-uploadpic {
   min-width: 50%;
-  border: solid 3px; }
+  border: solid 3px;
+}
 
 #btn-uploadpic:hover {
-  background-color: #535353; }
+  background-color: #535353;
+}
 
 #btn-submit {
   border: solid 3px;
   margin-top: 30px;
   margin-bottom: 60px;
   width: 100%;
-  max-width: 600px; }
+  max-width: 600px;
+}
 
 #btn-submit:hover {
-  background-color: #535353; }
+  background-color: #535353;
+}
 
 /* Images */
 .img-user-add {
   width: 40%;
-  margin-top: 20%; }
+  margin-top: 20%;
+}
 
 .img-user-add:hover {
-  filter: invert(1); }
+  filter: invert(1);
+}
 
 .profile-img {
   padding-top: 100%;
@@ -108,12 +133,13 @@ input {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  flex-shrink: 0; }
+  flex-shrink: 0;
+}
 
 /* Divs */
 .main1 {
   width: 100%;
   padding-left: 5%;
   padding-right: 5%;
-  margin-top: 5vh; }
-
+  margin-top: 5vh;
+}

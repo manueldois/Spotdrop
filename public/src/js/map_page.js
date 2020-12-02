@@ -34,16 +34,6 @@ var map = new google.maps.Map(document.getElementById('map'), {
     disableDefaultUI: true
 });
 
-// Heatmap
-var heatmap_data = [
-    new google.maps.LatLng(37.782551, -122.445368),
-    new google.maps.LatLng(37.782745, -122.444586),
-    new google.maps.LatLng(37.782842, -122.443688)
-]
-var heatmap = new google.maps.visualization.HeatmapLayer({
-    data: [],
-    map: null
-});
 // Places service
 var service = new google.maps.places.PlacesService(map);
 // Autocomplete
@@ -109,37 +99,6 @@ add_drop_marker.addListener('click', function () {
 })
 function hideAddDropIW() {
     add_drop_iw.hide()
-}
-
-// Listen to map zoom. Above zoom 13 convert to heatmap
-const trigger_heatmap_zoom = 13;
-var map_mode = "markers";
-map.addListener('zoom_changed', handleZoomChanged)
-function handleZoomChanged() {
-    var zoom = map.getZoom();
-
-    if (map_mode == "markers" && zoom <= trigger_heatmap_zoom) { // Enable heatmap
-        heatmap.setOptions({
-            data: heatmap_data,
-            map: map
-        })
-        all_markers.forEach((marker) => {
-            marker.setMap(null)
-        })
-        map_mode = "heatmap"
-    }
-    if (map_mode == "heatmap" && zoom > trigger_heatmap_zoom) { // Disable heatmap
-        heatmap.setOptions({
-            data: heatmap_data,
-            map: null
-        })
-        all_markers.forEach((marker) => {
-            marker.setMap(map)
-        })
-        setTimeout(colorMarkers, 2000)
-        map_mode = "markers"
-    }
-
 }
 
 
@@ -959,6 +918,7 @@ if (USER) {
         notifications_read = 0;
     }
     var new_notifications = notifications.length - notifications_read;
+    console.log("New notifications: ", new_notifications)
     if (new_notifications > 0) {
         $("#badge-notifications").text(new_notifications)
     } else {

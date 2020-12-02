@@ -81,31 +81,31 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/js/signup_external_page.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./js/signup_external_page.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/js/signup_external_page.js":
-/*!****************************************!*\
-  !*** ./src/js/signup_external_page.js ***!
-  \****************************************/
+/***/ "./js/signup_external_page.js":
+/*!************************************!*\
+  !*** ./js/signup_external_page.js ***!
+  \************************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scss_signup_page_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../scss/signup_page.scss */ \"./src/scss/signup_page.scss\");\n/* harmony import */ var _scss_signup_page_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_scss_signup_page_scss__WEBPACK_IMPORTED_MODULE_0__);\n // Form\n\n$(\"form\").submit(function (event) {}); // Flash messages\n\nfunction flash(type, message) {\n  console.log(type, message);\n\n  if (type == \"success\") {\n    var div_flash = $(\"#flash-success\").show();\n    var span_flash = div_flash.find(\"span\");\n    console.log(span_flash);\n    span_flash.html(message);\n    setTimeout(() => {\n      div_flash.hide();\n    }, 2000);\n  }\n\n  if (type == \"failure\") {\n    var div_flash = $(\"#flash-failure\").show();\n    var span_flash = div_flash.find(\"span\");\n    span_flash.html(message);\n    setTimeout(() => {\n      div_flash.hide();\n    }, 2000);\n  }\n}\n\n//# sourceURL=webpack:///./src/js/signup_external_page.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scss_signup_page_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../scss/signup_page.scss */ \"./scss/signup_page.scss\");\n/* harmony import */ var _scss_signup_page_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_scss_signup_page_scss__WEBPACK_IMPORTED_MODULE_0__);\n // Form\n\n$(\"form\").submit(function (event) {}); // Flash messages\n\nfunction flash(type, message) {\n  console.log(type, message);\n\n  if (type == \"success\") {\n    var div_flash = $(\"#flash-success\").show();\n    var span_flash = div_flash.find(\"span\");\n    console.log(span_flash);\n    span_flash.html(message);\n    setTimeout(() => {\n      div_flash.hide();\n    }, 2000);\n  }\n\n  if (type == \"failure\") {\n    var div_flash = $(\"#flash-failure\").show();\n    var span_flash = div_flash.find(\"span\");\n    span_flash.html(message);\n    setTimeout(() => {\n      div_flash.hide();\n    }, 2000);\n  }\n}\n\n//# sourceURL=webpack:///./js/signup_external_page.js?");
 
 /***/ }),
 
-/***/ "./src/scss/signup_page.scss":
-/*!***********************************!*\
-  !*** ./src/scss/signup_page.scss ***!
-  \***********************************/
+/***/ "./scss/signup_page.scss":
+/*!*******************************!*\
+  !*** ./scss/signup_page.scss ***!
+  \*******************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/scss/signup_page.scss?");
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./scss/signup_page.scss?");
 
 /***/ })
 

@@ -8,17 +8,18 @@ module.exports = {
     optimization: {
 		// We no not want to minimize our code.
 		minimize: false
-	},
+    },
+    context: path.resolve(__dirname, 'src'),
     mode: 'development',
     entry: {
-        signup_page: './src/js/signup_page',
-        drop_page: './src/js/drop_page',
-        home_page: './src/js/home_page',
-        map_page: './src/js/map_page',
-        signup_external_page: './src/js/signup_external_page',
-        signup_page: './src/js/signup_page',
-        user_other_page: './src/js/user_other_page',
-        user_self_page: './src/js/user_self_page',
+        signup_page: './js/signup_page',
+        drop_page: './js/drop_page',
+        home_page: './js/home_page',
+        map_page: './js/map_page',
+        signup_external_page: './js/signup_external_page',
+        signup_page: './js/signup_page',
+        user_other_page: './js/user_other_page',
+        user_self_page: './js/user_self_page',
     },
     module: {
         rules: [
