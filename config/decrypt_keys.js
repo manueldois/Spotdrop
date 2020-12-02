@@ -14,6 +14,8 @@ function decryptAll(secret){
     decrypt('mlabs', secret)
     decrypt('google-service-account',secret)
     decrypt('oauth',secret)
+    decrypt('MDBAtlas',secret)
+
 }
 
 /**
