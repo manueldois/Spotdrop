@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app",
-    "build": "webpack --config public/webpack.config.js",
+    "build": "npx webpack --config public/webpack.config.js",
     "nodemon": "nodemon --inspect app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
