@@ -8,6 +8,7 @@ async function main() {
     encryptKeyFile('google-service-account.json', secret)
     encryptKeyFile('mlabs.json', secret)
     encryptKeyFile('oauth.json', secret)
+    encryptKeyFile('MDBAtlas.json', secret)
     console.log("Encrypted all keys")
 }
 
