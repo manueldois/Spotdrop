@@ -15,6 +15,7 @@ app.post('/api/drop/upload-photo', function(req, res, next){
     req.fileName = uuidv1()
     next()
 }, StorageCtrl.upload.single('photo'), function (req, res) {
+    console.log("Photo upload: ", req.file.cloudUrl)
     if(req.file && req.file.cloudUrl){
         res.status(200).json({cloudUrl: req.file.cloudUrl})
     }else{

@@ -416,6 +416,9 @@ main {
   border-radius: 5px;
   font-size: 1.3em;
 }
+.btn-sbar-upload:disabled {
+  filter: grayscale(100%);
+}
 
 #btn-helper {
   position: absolute;

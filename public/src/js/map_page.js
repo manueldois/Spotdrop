@@ -536,6 +536,7 @@ $("#add-drop-iw").click(function () {
     $("#add-drop-focus").hide()
     if (USER) {
         $("#upload-drop-modal").modal("show")
+        $("#src-drop-hashtag").show()
     } else {
         // Open login sidebar when user clicks drop button when not logged in
         setSBar('sbar-not-loggedin')
@@ -554,55 +555,61 @@ if (USER) {
     })
     configUppy(uppy)
     uppy.on('complete', (result) => {
+        console.log("Upload complete")
         if (result.successful.length > 0) {
             var url_list = result.successful.map(upload_event => {
                 return upload_event.response.body.cloudUrl
             })
             ALL_UPLOADS = ALL_UPLOADS.concat(url_list)
             previewUploads(ALL_UPLOADS)
+            $(".btn-sbar-upload").show().removeAttr("disabled")
         }
         uppy.getPlugin('Dashboard').closeModal()
     })
-}
 
 
-function previewUploads() {
-    $("#sbar-form-upload-empty").hide();
-    $("#sbar-form-preview-img").show();
-    var row_preview = $("#sbar-form-preview-row")
-    var cols_preview = row_preview.children().html("");
 
-    var j = 0;
-    for (var i = 0; i < ALL_UPLOADS.length; i++) {
-        var col = cols_preview.eq(j)
-        var url = ALL_UPLOADS[i]['_4x'];
-        var div = $("<div></div>")
-        div.addClass("mt-2").css("position", "relative")
-        col.append(div)
+    function previewUploads() {
+        $("#sbar-form-upload-empty").hide();
+        $("#sbar-form-preview-img").show();
+        var row_preview = $("#sbar-form-preview-row")
+        var cols_preview = row_preview.children().html("");
 
-        div.append("<img src='" + url + "' class='w-100'>")
-        div.append("<button type='button' class='btn btn-danger btn-remove-img ml-auto'>Remove</button>")
+        var j = 0;
+        for (var i = 0; i < ALL_UPLOADS.length; i++) {
+            var col = cols_preview.eq(j)
+            var url = ALL_UPLOADS[i]['_4x'];
+            var div = $("<div></div>")
+            div.addClass("mt-2").css("position", "relative")
+            col.append(div)
 
-        j++;
-        if (j > 1) {
-            j = 0;
+            div.append("<img src='" + url + "' class='w-100'>")
+            div.append("<button type='button' class='btn btn-danger btn-remove-img ml-auto'>Remove</button>")
+
+            j++;
+            if (j > 1) {
+                j = 0;
+            }
         }
-    }
-    $(".btn-remove-img").click(function () {
-        var btn = $(this);
-        var img = btn.prev()
-        var img_url = img.attr("src")
-        var index = ALL_UPLOADS.findIndex((url) => {
-            return url == img_url
+        $(".btn-remove-img").click(function () {
+            var btn = $(this);
+            var img = btn.prev()
+            var img_url = img.attr("src")
+            var index = ALL_UPLOADS.findIndex((url) => {
+                return url == img_url
+            })
+            ALL_UPLOADS.splice(index, 1)
+            previewUploads(ALL_UPLOADS)
         })
-        ALL_UPLOADS.splice(index, 1)
-        previewUploads(ALL_UPLOADS)
-    })
-    $("#btn-add-imgs").click(function () {
-        openPicker()
-    })
-    $("#input-urls").val(JSON.stringify(ALL_UPLOADS));
+        $("#btn-add-imgs").click(function () {
+            openPicker()
+        })
+        $("#input-urls").val(JSON.stringify(ALL_UPLOADS));
+    }
 }
+
+
+
 
 // Search
 function searchDB(val, type) {
@@ -646,7 +653,7 @@ if (USER) {
                 if (value) {
                     searchDB(value, "hashtag").then((results) => {
                         if (results.hashtags) {
-                            $("#src-drop-hashtag").show()
+
                         }
                         renderSrcResultsHashtag(results.hashtags)
                     }).catch((reason) => {

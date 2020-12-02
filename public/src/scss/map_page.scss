@@ -389,6 +389,9 @@ main {
 .btn-sbar-upload {
   border-radius: 5px;
   font-size: 1.3em;
+  &:disabled {
+    filter: grayscale(100%);
+  }
 }
 #btn-helper {
   position: absolute;
