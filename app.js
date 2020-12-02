@@ -12,9 +12,11 @@ require('dotenv').config()
 require('./config/decrypt_keys').decryptAll(process.env['APP_SECRET'])
 
 
-const MLABS_KEYS = require('./config/keys_plaintext/mlabs')
+const MDB_ATLAS_KEYS = require('./config/keys_plaintext/mDBAtlas')
 mongoose.connect(process.env['NODE_ENV'] === 'development' ? "mongodb://localhost/SD1" :
-    `mongodb://${MLABS_KEYS.dbUser}:${MLABS_KEYS.dbPassword}@ds021884.mlab.com:21884/spotdrop`, err => {
+    `mongodb+srv://manueldois:${MDB_ATLAS_KEYS.dbPassword}@spotdrop.v7q1m.mongodb.net/spotdrop?retryWrites=true&w=majority`, 
+    { useNewUrlParser: true, useUnifiedTopology: true },
+    err => {
         if (err) { console.error("Cannot connect to DB: ", err); process.exit() }
     })
 
