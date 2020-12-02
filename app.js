@@ -12,7 +12,7 @@ require('dotenv').config()
 require('./config/decrypt_keys').decryptAll(process.env['APP_SECRET'])
 
 
-const MDB_ATLAS_KEYS = require('./config/keys_plaintext/mDBAtlas')
+const MDB_ATLAS_KEYS = require('./config/keys_plaintext/MDBAtlas')
 mongoose.connect(process.env['NODE_ENV'] === 'development' ? "mongodb://localhost/SD1" :
     `mongodb+srv://manueldois:${MDB_ATLAS_KEYS.dbPassword}@spotdrop.v7q1m.mongodb.net/spotdrop?retryWrites=true&w=majority`, 
     { useNewUrlParser: true, useUnifiedTopology: true },
