@@ -16,7 +16,7 @@
   "dependencies": {
     "@google-cloud/storage": "^3.2.1",
     "@uppy/companion": "^1.4.0",
-    "async": "^2.6.0",
+    "async": "^2.6.4",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.2",
     "connect-flash": "^0.1.1",
